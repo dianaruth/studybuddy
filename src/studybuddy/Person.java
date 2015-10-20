@@ -1,9 +1,9 @@
 package studybuddy;
 
 public abstract class Person {
-	private String firstName;
-	private String lastName;
-	private String email;
+	protected String firstName;
+	protected String lastName;
+	protected String email;
 	
 	public String getEmail(){ return email; }
 	
