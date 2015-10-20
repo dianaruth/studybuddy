@@ -14,7 +14,7 @@ public class Tutor extends Person implements Subject{
 	
 	public double getPrice(){ return price;}
 	
-	public ArrayList<String> egtSubjects(){ return subjects;}
+	public ArrayList<String> getSubjects(){ return subjects;}
 	
 	public void subscribe(Student name){ subscribers.add(name);}
 	
