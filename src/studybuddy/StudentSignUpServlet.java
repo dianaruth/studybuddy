@@ -3,41 +3,33 @@ package studybuddy;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
-
-public class TutorSignupServlet extends HttpServlet {
-	
+public class StudentSignUpServlet extends HttpServlet {
 	/**
-	 * Registers new tutor accounts in the DataStore. Must pass data: firstName, lastName, email,
-	 * price (as a string). If any field is null or if the price is less than 0.00, the tutor
-	 * will not be added to the DataStore. **NOTE: Will need to add subject to this function after 
-	 * front end is done**.
+	 * Registers new student accounts in the DataStore. Must pass data: firstName, lastName, email.
+	 * If any of these fields are null, the student will not be added to the DataStore.
 	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	{
-		Key tutorKey = KeyFactory.createKey("tutor", "def");
-		Entity tutor = new Entity("tutor", tutorKey);
+		Key studentKey = KeyFactory.createKey("student", "def");
+		Entity student = new Entity("student", studentKey);
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
-		String priceString = req.getParameter("price");
-		double price = Double.parseDouble(priceString);
 		
-		Tutor profile = new Tutor();
+		Student profile = new Student();
 		profile.setFirstName(firstName);
 		profile.setLastName(lastName);
 		profile.setEmail(email);
-		profile.setPrice(price);
-		tutor.setProperty("tutor", profile);
+		student.setProperty("student", profile);
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		if(firstName != null && lastName != null && email != null && price >= 0)
-			datastore.put(tutor);
+		if(firstName != null && lastName != null && email != null)
+			datastore.put(student);
 		
 	}
 
