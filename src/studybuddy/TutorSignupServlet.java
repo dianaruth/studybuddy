@@ -13,6 +13,11 @@ import com.google.appengine.api.datastore.KeyFactory;
 
 public class TutorSignupServlet extends HttpServlet {
 	
+	/**
+	 * Registers new tutor accounts in the DataStore. Must pass data: firstName, lastName, email,
+	 * price (as a string). If any field is null or if the price is less than 0.00, the tutor
+	 * will not be added to the DataStore.
+	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	{
 		Key tutorKey = KeyFactory.createKey("tutor", "def");

@@ -10,7 +10,10 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 public class signUpServlet extends HttpServlet {
-	
+	/**
+	 * Registers new student accounts in the DataStore. Must pass data: firstName, lastName, email.
+	 * If any of these fields are null, the student will not be added to the DataStore.
+	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	{
 		Key studentKey = KeyFactory.createKey("student", "def");
