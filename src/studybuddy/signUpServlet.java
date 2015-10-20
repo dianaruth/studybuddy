@@ -22,11 +22,11 @@ public class signUpServlet extends HttpServlet {
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
 		
-		Student temp = new Student();
-		temp.setFirstName(firstName);
-		temp.setLastName(lastName);
-		temp.setEmail(email);
-		student.setProperty("student", temp);
+		Student profile = new Student();
+		profile.setFirstName(firstName);
+		profile.setLastName(lastName);
+		profile.setEmail(email);
+		student.setProperty("student", profile);
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		if(firstName != null && lastName != null && email != null)
 			datastore.put(student);

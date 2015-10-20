@@ -16,7 +16,8 @@ public class TutorSignupServlet extends HttpServlet {
 	/**
 	 * Registers new tutor accounts in the DataStore. Must pass data: firstName, lastName, email,
 	 * price (as a string). If any field is null or if the price is less than 0.00, the tutor
-	 * will not be added to the DataStore.
+	 * will not be added to the DataStore. **NOTE: Will need to add subject to this function after 
+	 * front end is done**.
 	 */
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 	{
@@ -28,12 +29,12 @@ public class TutorSignupServlet extends HttpServlet {
 		String priceString = req.getParameter("price");
 		double price = Double.parseDouble(priceString);
 		
-		Tutor temp = new Tutor();
-		temp.setFirstName(firstName);
-		temp.setLastName(lastName);
-		temp.setEmail(email);
-		temp.setPrice(price);
-		tutor.setProperty("tutor", temp);
+		Tutor profile = new Tutor();
+		profile.setFirstName(firstName);
+		profile.setLastName(lastName);
+		profile.setEmail(email);
+		profile.setPrice(price);
+		tutor.setProperty("tutor", profile);
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		if(firstName != null && lastName != null && email != null && price >= 0)
 			datastore.put(tutor);
