@@ -4,7 +4,7 @@ package studybuddy;
  * 
  * Observer.java
  * Interface class for observer 
- *implemented by all observer
+ * Implemented by all observers
  * 
  */
 public interface Observer {
