@@ -10,11 +10,22 @@ public class Tutor extends Person implements Subject{
 	
 	public void setPrice(double number){ 
 		price = number;
-		String msg = new String(firstName + " " + lastName + " has updates his price to " + number + ".");
+		String msg = new String(firstName + " " + lastName + " has updated their price to " + number + ".");
 		notifyObservers(msg);
 	}
 	
-	public void addSubject(String subject){ subjects.add(subject);}
+	public void addSubject(String subject){
+		subjects.add(subject);
+		notifyObservers(firstName + " " + lastName + " has added the subject " + subject + ".");
+	}
+	
+	public void removeSubject(String subject)
+	{
+		int i = subjects.indexOf(subject);
+		subjects.remove(i);
+		notifyObservers(firstName + " " + lastName + " has removed the following subject from their list of tutored subjects: " + subject + ".");
+		
+	}
 	
 	public double getPrice(){ return price;}
 	
@@ -31,7 +42,7 @@ public class Tutor extends Person implements Subject{
 	public void notifyObservers(String msg) {
 		for(int i = 0; i < subscribers.size(); i++)
 		{
-			subscribers.get(i).update();
+			subscribers.get(i).update(msg);
 		}
 		
 	}
