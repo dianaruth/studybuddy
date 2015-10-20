@@ -1,7 +1,7 @@
 package studybuddy;
 
 public interface Subject {
-    public void registerObserver(Observer observer);
-    public void removeObserver(Observer observer);
+    public void registerObserver(Student observer);
+    public void removeObserver(Student observer);
     public void notifyObservers(String message);
 }
