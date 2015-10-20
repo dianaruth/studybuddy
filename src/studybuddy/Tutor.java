@@ -2,6 +2,8 @@ package studybuddy;
 
 import java.util.ArrayList;
 
+import javax.persistence.metamodel.Entity;
+
 public class Tutor extends Person implements Subject{
 	
 	private double price;
@@ -38,7 +40,6 @@ public class Tutor extends Person implements Subject{
 		subscribers.remove(index);
 	}
 
-	@Override
 	public void notifyObservers(String msg) {
 		for(int i = 0; i < subscribers.size(); i++)
 		{
