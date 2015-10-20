@@ -16,12 +16,18 @@ public class Tutor extends Person implements Subject{
 	
 	public ArrayList<String> getSubjects(){ return subjects;}
 	
-	public void subscribe(Student name){ subscribers.add(name);}
+	public void registerObserver(Student name){ subscribers.add(name);}
 	
-	public void unsubscribe(Student name){ 
+	public void removeObserver(Student name){ 
 		int index = subscribers.indexOf(name);
 		subscribers.remove(index);
 	}
-	
-	
+
+	public void notifyObservers() {
+		
+	}
+
+	public Object getUpdate() {
+		return null;
+	}
 }

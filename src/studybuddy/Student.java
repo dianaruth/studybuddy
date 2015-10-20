@@ -2,17 +2,22 @@ package studybuddy;
 
 public class Student extends Person implements Observer {
 	
+	private Subject tutorSubject;
+	
 	public void subscribe(Tutor tutor) {
-		tutor.subscribe(this);
+		tutor.registerObserver(this);
 	}
 	
 	public void unsubscribe(Tutor tutor){
-		tutor.unsubscribe(this);
+		tutor.removeObserver(this);
 	}
-	public void update(Tutor tutor)
-	{
+	
+	public void update(){
 		
 	}
 	
+	public void setSubject(Subject subject) {
+		this.tutorSubject = subject;
+	}
 	
 }
