@@ -31,9 +31,9 @@ public class Tutor extends Person implements Subject{
 	
 	public ArrayList<String> getSubjects(){ return subjects;}
 	
-	public void registerObserver(Observer name){ subscribers.add(name);}
+	public void registerObserver(Student name){ subscribers.add(name);}
 	
-	public void removeObserver(Observer name){ 
+	public void removeObserver(Student name){ 
 		int index = subscribers.indexOf(name);
 		subscribers.remove(index);
 	}
@@ -47,7 +47,5 @@ public class Tutor extends Person implements Subject{
 		
 	}
 
-	
-	
 	
 }
