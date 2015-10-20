@@ -12,12 +12,15 @@ public class Student extends Person implements Observer {
 		tutor.removeObserver(this);
 	}
 	
-	public void update(){
-		
+	public void update(String updateMessage){
+		sendEmailUpdate(updateMessage);
 	}
 	
 	public void setSubject(Subject subject) {
 		this.tutorSubject = subject;
 	}
 	
+	public void sendEmailUpdate(String updateMessage){
+		
+	}
 }
