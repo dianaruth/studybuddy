@@ -23,11 +23,4 @@ public class Tutor extends Person implements Subject{
 		subscribers.remove(index);
 	}
 
-	public void notifyObservers() {
-		
-	}
-
-	public Object getUpdate() {
-		return null;
-	}
 }
