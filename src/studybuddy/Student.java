@@ -20,7 +20,9 @@ public class Student extends Person implements Observer {
 		this.tutorSubject = subject;
 	}
 	
-	public void sendEmailUpdate(String updateMessage){
-		
+	private void sendEmailUpdate(String updateMessage){
+		EmailServlet email = new EmailServlet(this);
+		email.sendEmail(updateMessage);
 	}
+
 }
