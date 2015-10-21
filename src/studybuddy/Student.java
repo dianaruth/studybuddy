@@ -2,7 +2,9 @@ package studybuddy;
 
 import java.util.ArrayList;
 
-import javax.persistence.metamodel.Entity;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+
 /**
  * 
  * This is the student class. It extends the person class and implements Observer.
@@ -10,9 +12,14 @@ import javax.persistence.metamodel.Entity;
  *  are subscribed to.
  *
  */
+
+@Entity
+
 public class Student extends Person implements Observer {
 	
+	@Id Long id;
 	private Subject tutorSubject;
+	
 	private ArrayList<Tutor> subs = new ArrayList<Tutor>();
 	
 	/**

@@ -2,15 +2,20 @@ package studybuddy;
 
 import java.util.ArrayList;
 
-import javax.persistence.metamodel.Entity;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 
 /**
  * The class to be made when a tutor account is opened. It contains all of the information
  * needed to keep tutors and student subscribers up to date.
  *
  */
+
+@Entity
+
 public class Tutor extends Person implements Subject{
 	
+	@Id Long id;
 	private double price;
 	private ArrayList<String> subjects = new ArrayList<String>();
 	private ArrayList<Observer> subscribers = new ArrayList<Observer>();

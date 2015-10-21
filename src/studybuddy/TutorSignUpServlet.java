@@ -1,15 +1,14 @@
 package studybuddy;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import com.googlecode.objectify.ObjectifyService;
+import studybuddy.Tutor;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
 public class TutorSignUpServlet extends HttpServlet {
 	
@@ -19,10 +18,9 @@ public class TutorSignUpServlet extends HttpServlet {
 	 * will not be added to the DataStore. **NOTE: Will need to add subject to this function after 
 	 * front end is done**.
 	 */
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
 	{
-		Key tutorKey = KeyFactory.createKey("tutor", "def");
-		Entity tutor = new Entity("tutor", tutorKey);
+		ObjectifyService.register(Tutor.class);
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
@@ -36,10 +34,10 @@ public class TutorSignUpServlet extends HttpServlet {
 		profile.setEmail(email);
 		profile.setPassword(password);
 		profile.setPrice(price);
-		tutor.setProperty("tutor", profile);
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		if(firstName != null && lastName != null && email != null && password != null && price >= 0)
-			datastore.put(tutor);
+		ofy().save().entity(profile).now();
+		Cookie cookie = new Cookie("email", email);
+		resp.addCookie(cookie);
+        resp.sendRedirect("/dashboard.jsp");
 	}
 
 }
