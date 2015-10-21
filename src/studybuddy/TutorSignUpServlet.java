@@ -26,6 +26,7 @@ public class TutorSignUpServlet extends HttpServlet {
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
+		String password = req.getParameter("password");
 		String priceString = req.getParameter("price");
 		double price = Double.parseDouble(priceString);
 		
@@ -33,12 +34,12 @@ public class TutorSignUpServlet extends HttpServlet {
 		profile.setFirstName(firstName);
 		profile.setLastName(lastName);
 		profile.setEmail(email);
+		profile.setPassword(password);
 		profile.setPrice(price);
 		tutor.setProperty("tutor", profile);
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		if(firstName != null && lastName != null && email != null && price >= 0)
+		if(firstName != null && lastName != null && email != null && password != null && price >= 0)
 			datastore.put(tutor);
-		
 	}
 
 }

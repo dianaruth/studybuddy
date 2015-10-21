@@ -21,14 +21,16 @@ public class StudentSignUpServlet extends HttpServlet {
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
+		String password = req.getParameter("password");
 		
 		Student profile = new Student();
 		profile.setFirstName(firstName);
 		profile.setLastName(lastName);
 		profile.setEmail(email);
+		profile.setPassword(password);
 		student.setProperty("student", profile);
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		if(firstName != null && lastName != null && email != null)
+		if(firstName != null && lastName != null && email != null && password != null)
 			datastore.put(student);
 		
 	}
