@@ -14,6 +14,7 @@
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 	<script src="//use.edgefonts.net/just-another-hand;londrina-sketch.js"></script>
 	<script src='js/landingpage.js'></script>
+	<script src='js/MD5.js'></script>
 	
 </head>
 
