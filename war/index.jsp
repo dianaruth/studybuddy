@@ -18,11 +18,20 @@
 </head>
 
 <body>
+	<%
+		String error = request.getParameter("page");
+	%>
 	<div id="panel" class="container col-sm-offset-3 col-sm-6 col-sm-offset-3">
 		<div id="title">
 			<h1 id="title">Study Buddy</h1>
 			<h1 id="subtitle">Find your buddy.</h1>
+			
 		</div>
+		<%
+			if(error != null && error.equals("loginError"))
+				pageContext.setAttribute("msg", "Either the email or the password that you have entered was not found. Please try again.");
+		%>
+		<font color="red"> ${fn:escapeXml(msg)} </font>
 		<div id="forms">
 			<form id='login' method='post' action='/login'>
 				<h3>Log In</h3>

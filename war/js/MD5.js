@@ -1,88 +1,27 @@
-// hide other panels when a panel is clicked
-$(function(){
-	$('#studentSignUp').hide();
-	$('#tutorSignUp').hide();
-	$('#showLogin').hide();
-	$('#forgotPasswordForm').hide();
-	$("#panel").css("margin-top", (window.innerHeight*0.07));
-	$("#panel").css("margin-bottom", (window.innerHeight*0.07));
-	
-	// student sign up button clicked
-	$(document.body).on('click', '#showStudent', function(){
-		$('#studentSignUp').show();
-		$('#tutorSignUp').hide();
-		$('#login').hide();
-		$('#forgotPasswordForm').hide();
-		$('#showLogin').show();
-		$('#showTutor').show();
-		$('#showStudent').hide();
-	})
-	
-	// tutor sign up button clicked
-	$(document.body).on('click', '#showTutor', function(){
-		$('#studentSignUp').hide();
-		$('#tutorSignUp').show();
-		$('#login').hide();
-		$('#forgotPasswordForm').hide();
-		$('#showLogin').show();
-		$('#showTutor').hide();
-		$('#showStudent').show();
-	})
-	
-	// login button clicked
-	$(document.body).on('click', '#showLogin', function(){
-		$('#studentSignUp').hide();
-		$('#tutorSignUp').hide();
-		$('#login').show();
-		$('#forgotPasswordForm').hide();
-		$('#showLogin').hide();
-		$('#showTutor').show();
-		$('#showStudent').show();
-	})
-	
-	// forgot password button clicked
-	$(document.body).on('click', '#forgotPassword', function(){
-		$('#studentSignUp').hide();
-		$('#tutorSignUp').hide();
-		$('#login').hide();
-		$('#forgotPasswordForm').show();
-		$('#showLogin').show();
-		$('#showTutor').show();
-		$('#showStudent').show();
-	})
-	
-	// form validation for student sign up
-	$(document.body).on('click', '#studentSignUpSubmit', function(){
-		if ($('#studentFirstName').val().length > 0 && $('#studentLastName').val().length > 0 && $('#studentEmail').val().length > 0) {
-			if ($('#studentPassword1').val() == $('#studentPassword2').val()) {
-				var temp = $('#studentPassword1').val();
-				var hash = md5(temp);
-				var word = hash.toString();
-				$('#studentPassword1').val(word);
-				$('#studentSignUp').submit();
-			}
-			else {
-				$('#student-passwords-dont-match').append("Passwords do not match.");
-				$('#studentPassword1').val() = "";
-				$('#studentPassword1').val() = "";
-			}
-		}
-	})
-	
-	// form validation for tutor sign up
-	$(document.body).on('click', '#tutorSignUpSubmit', function(){
-		if($('#tutorFirstName').val().length > 0 && $('#tutorLastName').val().length > 0 && $('#tutorEmail').val().length > 0 && $('#tutorRate').val().length > 0) {
-			if ($('#tutorPassword1').val() == $('#tutorPassword2').val()) {
-				$('#tutorSignUp').submit();
-			}
-			else {
-				$('#tutor-passwords-dont-match').append("Passwords do not match.");
-				$('#tutorPassword1').val() = "";
-				$('#tutorPassword1').val() = "";
-			}
-		}
-	})
-	'use strict';
+/*
+ * JavaScript MD5 1.0.1
+ * https://github.com/blueimp/JavaScript-MD5
+ *
+ * Copyright 2011, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ * 
+ * Based on
+ * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+ * Digest Algorithm, as defined in RFC 1321.
+ * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for more info.
+ */
+
+/*jslint bitwise: true */
+/*global unescape, define */
+
+(function ($) {
+    'use strict';
 
     /*
     * Add integers, wrapping at 2^32. This uses 16-bit operations internally
@@ -332,5 +271,4 @@ $(function(){
     } else {
         $.md5 = md5;
     }
-
-})
+}(this));

@@ -20,6 +20,6 @@ for(Cookie cookie : cookies){
 
 </head>
 <body>
-	Dashboard
+	<b>Dashboard. This is where all of the awesome stuff happens... Whenever we get around to building the awesome stuff.</b>
 </body>
 </html>
