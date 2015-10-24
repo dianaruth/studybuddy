@@ -10,11 +10,19 @@ public class Person {
 	protected String lastName;
 	protected String email;
 	protected String password;
+	protected boolean passChange;
+	protected int changeCode;
 	
 	/** 
 	 * @return email of person
 	 */
 	public String getEmail(){ return email; }
+	
+	public void setChangeCode(int number){ changeCode = number; }
+	
+	public void setPassChange(){ passChange = true;}
+	
+	public void resetPassChange(){ passChange = false; }
 	
 	/**
 	 * @return password of person

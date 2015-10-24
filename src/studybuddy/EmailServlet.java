@@ -30,7 +30,7 @@ public class EmailServlet {
 	   public String from;
 	   public String host;
 	   
-	   EmailServlet(Student student){
+	   EmailServlet(Person student){
 		   this.to = student.getEmail();
 	   }
 	   public void sendEmail(String email) {

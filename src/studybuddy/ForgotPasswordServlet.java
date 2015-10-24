@@ -27,28 +27,28 @@ public class ForgotPasswordServlet extends HttpServlet {
         	List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
         	boolean found = false;
         	String password = null;
-        	Student s;
-        	Tutor t;
+        	Person s = new Student();
         	for (int i = 0; i < students.size(); i++) {
         		s = students.get(i);
         		if (s.getEmail().equals(email)) {
         			found = true;
-        			password = s.getPassword();
         			break;
         		}
         	}
         	if (!found) {
 	        	for (int i = 0; i < tutors.size(); i++) {
-	        		t = tutors.get(i);
-	        		if (t.getEmail().equals(email)) {
+	        		s = tutors.get(i);
+	        		if (s.getEmail().equals(email)) {
 	        			found = true;
-	        			password = t.getPassword();
 	        			break;
 	        		}
 	        	}
         	}
         	if (found) {
-        		String msgBody = "Password for " + email + ":\n\n" + password;
+        		int number = 1;
+        		s.setChangeCode(number);
+        		s.setPassChange();
+        		String msgBody = "Password for " + email + ":\n\n study-buddy-1105.appspot.com/passwordreset.jsp?number=" + number +"&email=" + email;
         		Message msg = new MimeMessage(session);
 			    msg.setFrom(new InternetAddress("forgotpassword@study-buddy-1105.appspotmail.com", "Study Buddy Password Service"));
         		msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email, ""));
