@@ -1,10 +1,16 @@
 package studybuddy;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
 import com.googlecode.objectify.ObjectifyService;
+
 import java.util.*;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -55,6 +61,7 @@ public class ForgotPasswordServlet extends HttpServlet {
         		msg.setSubject("Forgot Password");
 			    msg.setText(msgBody);
 			    Transport.send(msg);
+			    ofy().save().entity(s).now();
         	}
         	resp.sendRedirect("/index.jsp");
 		}

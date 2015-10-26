@@ -1,5 +1,7 @@
 package studybuddy;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class PasswordResetServlet extends HttpServlet {
        		p.setPassword(newPassword);
        		p.resetPassChange();
        		p.setChangeCode(0);
+       		ofy().save().entity(p).now();
        	}
       	resp.sendRedirect("/index.jsp");
 	}
