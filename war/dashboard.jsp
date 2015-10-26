@@ -11,7 +11,7 @@
 Cookie[] cookies = request.getCookies();
 
 if (cookies.length == 0) {
-	response.sendRedirect("/dashboard.jsp");
+	response.sendRedirect("/index.jsp");
 }
 
 String email = null;
@@ -73,6 +73,8 @@ pageContext.setAttribute("last_name", user.getLastName());
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="css/dashboard.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -118,7 +120,9 @@ pageContext.setAttribute("last_name", user.getLastName());
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        	<form id="logoutForm" method="post" action="/logout">
+                        		<a id="logoutButton"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        	</form>
                         </li>
                     </ul>
                 </li>
@@ -210,6 +214,8 @@ pageContext.setAttribute("last_name", user.getLastName());
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+    <script src="js/dashboard.js"></script>
 
 </body>
 

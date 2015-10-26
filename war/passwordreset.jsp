@@ -45,7 +45,7 @@
 					<input type='password' id='studentPassword2' name='password2' class='form-control' required>
 				</div>
 				<br>
-				<button type='button' class='btn btn-block btn-primary' id='passwordResetSubmit'>Submit</button>
+				<button type='button' class='btn btn-block btn-primary' id='passwordResetSubmit' style="width: 30%; margin-bottom: 30px;">Submit</button>
 			</form>
 		</div>
 
