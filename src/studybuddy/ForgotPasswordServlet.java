@@ -51,7 +51,8 @@ public class ForgotPasswordServlet extends HttpServlet {
 	        	}
         	}
         	if (found) {
-        		int number = 1;
+        		Random rand = new Random(new Date().getTime());
+        		int number = rand.nextInt();
         		s.setChangeCode(number);
         		s.setPassChange();
         		String msgBody = "Password for " + email + ":\n\n study-buddy-1105.appspot.com/passwordreset.jsp?number=" + number +"&email=" + email;
