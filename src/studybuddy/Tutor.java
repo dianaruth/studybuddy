@@ -1,6 +1,7 @@
 package studybuddy;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -80,9 +81,10 @@ public class Tutor extends Person implements Subject{
 	 * Notifies all of this tutor's subscribers of any change to the tutor's price or subjects.
 	 */
 	public void notifyObservers(String msg) {
+		Date date = new Date();
 		for(int i = 0; i < subscribers.size(); i++)
 		{
-			subscribers.get(i).update(msg);
+			subscribers.get(i).update(new Action(this, date, msg));
 		}
 		
 	}

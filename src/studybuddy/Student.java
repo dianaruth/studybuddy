@@ -1,6 +1,7 @@
 package studybuddy;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -21,6 +22,7 @@ public class Student extends Person implements Observer {
 	private Subject tutorSubject;
 	
 	private ArrayList<Tutor> subs = new ArrayList<Tutor>();
+	private ArrayList<Action> actions = new ArrayList<Action>();
 	
 	/**
 	 * 
@@ -52,8 +54,14 @@ public class Student extends Person implements Observer {
 	 * This method is called any time a tutor that the student is subscribed to 
 	 * updates prices or subjects. It then sends the student an email with the update info.
 	 */
-	public void update(String updateMessage){
-		sendEmailUpdate(updateMessage);
+	public void update(Action action){
+		sendEmailUpdate(action.getAction());
+		
+	}
+	
+	public void addAction(Action action)
+	{
+		actions.add(action);
 	}
 	
 	/**

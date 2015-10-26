@@ -1,5 +1,7 @@
 package studybuddy;
 
+import java.util.Date;
+
 /**
  * 
  * Observer.java
@@ -8,5 +10,5 @@ package studybuddy;
  * 
  */
 public interface Observer {
-	public void update(String updateMessage);
+	public void update(Action action);
 }
