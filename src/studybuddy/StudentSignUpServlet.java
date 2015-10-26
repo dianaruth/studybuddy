@@ -27,6 +27,7 @@ public class StudentSignUpServlet extends HttpServlet {
 		profile.setLastName(lastName);
 		profile.setEmail(email);
 		profile.setPassword(password);
+		profile.setIsTutor(false);
 		ofy().save().entity(profile).now();
 		Cookie cookie = new Cookie("email", email);
 		resp.addCookie(cookie);

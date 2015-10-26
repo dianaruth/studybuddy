@@ -12,6 +12,7 @@ public class Person {
 	protected String password;
 	protected boolean passChange;
 	protected int changeCode;
+	protected boolean isTutor;
 	
 	/** 
 	 * @return email of person
@@ -45,6 +46,11 @@ public class Person {
 	 */
 	public String getLastName(){ return lastName; }
 	
+	/**
+	 * @return whether or not the person is a tutor
+	 */
+	public boolean getIsTutor() { return isTutor;}
+	
 	/** 
 	 * @param email address of person
 	 */
@@ -64,4 +70,9 @@ public class Person {
 	 * @param last name of person
 	 */
 	public void setLastName(String name){ lastName = name;}
+	
+	/** 
+	 * @param whether or not person is a tutor
+	 */
+	public void setIsTutor(boolean tutor){ isTutor = tutor;}
 }

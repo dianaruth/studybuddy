@@ -34,6 +34,7 @@ public class TutorSignUpServlet extends HttpServlet {
 		profile.setEmail(email);
 		profile.setPassword(password);
 		profile.setPrice(price);
+		profile.setIsTutor(true);
 		ofy().save().entity(profile).now();
 		Cookie cookie = new Cookie("email", email);
 		resp.addCookie(cookie);
