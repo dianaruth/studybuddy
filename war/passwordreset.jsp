@@ -8,13 +8,13 @@
 <head>
 
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/landingpage.css">
+	<link rel="stylesheet" type="text/css" href="css/passwordreset.css">
 	
 	<script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 	<script src="//use.edgefonts.net/just-another-hand;londrina-sketch.js"></script>
 	<script src='js/MD5.js'></script>
-	<script src='js/resetpage.js'></script>
+	<script src='js/passwordreset.js'></script>
 
 </head>
 
