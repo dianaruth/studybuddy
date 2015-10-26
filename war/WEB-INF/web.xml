@@ -52,6 +52,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     	<servlet-name>forgotPassword</servlet-name>
     	<url-pattern>/forgotPassword</url-pattern>
   	</servlet-mapping>
+  	
+  	<servlet>
+    	<servlet-name>passwordReset</servlet-name>
+    	<servlet-class>studybuddy.PasswordResetServlet</servlet-class>
+  	</servlet>
+
+  	<servlet-mapping>
+    	<servlet-name>passwordReset</servlet-name>
+    	<url-pattern>/passwordReset</url-pattern>
+  	</servlet-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

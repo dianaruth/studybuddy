@@ -20,9 +20,13 @@ public class Person {
 	
 	public void setChangeCode(int number){ changeCode = number; }
 	
+	public int getChangeCode(){ return changeCode; }
+	
 	public void setPassChange(){ passChange = true;}
 	
 	public void resetPassChange(){ passChange = false; }
+	
+	public boolean getPassChange(){ return passChange; }
 	
 	/**
 	 * @return password of person
