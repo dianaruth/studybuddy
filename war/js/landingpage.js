@@ -13,6 +13,7 @@ $(function(){
 		$('#tutorSignUp').hide();
 		$('#login').hide();
 		$('#forgotPasswordForm').hide();
+		$('#forgotPassword').hide();
 		$('#showLogin').show();
 		$('#showTutor').show();
 		$('#showStudent').hide();
@@ -24,6 +25,7 @@ $(function(){
 		$('#tutorSignUp').show();
 		$('#login').hide();
 		$('#forgotPasswordForm').hide();
+		$('#forgotPassword').hide();
 		$('#showLogin').show();
 		$('#showTutor').hide();
 		$('#showStudent').show();
@@ -35,6 +37,7 @@ $(function(){
 		$('#tutorSignUp').hide();
 		$('#login').show();
 		$('#forgotPasswordForm').hide();
+		$('#forgotPassword').hide();
 		$('#showLogin').hide();
 		$('#showTutor').show();
 		$('#showStudent').show();
@@ -46,6 +49,7 @@ $(function(){
 		$('#tutorSignUp').hide();
 		$('#login').hide();
 		$('#forgotPasswordForm').show();
+		$('#forgotPassword').show();
 		$('#showLogin').show();
 		$('#showTutor').show();
 		$('#showStudent').show();
