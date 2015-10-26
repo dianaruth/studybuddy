@@ -26,9 +26,12 @@ public class PasswordResetServlet extends HttpServlet {
 		String email = (String) req.getSession().getAttribute("email");
 		String changeCodeString = (String)req.getSession().getAttribute("number");;
 		String newPassword = req.getParameter("password");
-		if(changeCodeString == null || changeCodeString.equals("") || email == null || email.equals(""));
+		int changeCode = 1;
+		try
+		{ changeCode = Integer.parseInt(changeCodeString);}
+		catch(NumberFormatException e){
 			resp.sendRedirect("/index.jsp");
-		int changeCode = Integer.parseInt(changeCodeString);
+		}
        	List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
        	List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
        	boolean found = false;

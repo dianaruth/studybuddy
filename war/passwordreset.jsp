@@ -21,9 +21,15 @@
 <body>
 <%
 	String number = request.getParameter("number");
-	session.setAttribute("number", number);
 	String email = request.getParameter("email");
-	session.setAttribute("email", email);
+	if(number != null && email != null){
+		session.setAttribute("number", number);
+		session.setAttribute("email", email);
+	}
+	else{
+		session.setAttribute("number", "");
+		session.setAttribute("email", "");
+	}
 	%>
 	<div id="panel" class="container col-sm-offset-3 col-sm-6 col-sm-offset-3">
 		<div id="title">
