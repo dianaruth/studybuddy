@@ -45,7 +45,6 @@
 					<input id="loginPassword" name="password" type="password" class='form-control' required>
 				</div>
 				<br>
-				<button id="forgotPassword" class="btn btn-link">Forgot Password?</button>
 				<input type='submit' class='btn btn-block btn-primary' id='loginSubmit' value='Submit'>
 			</form>
 			<form id="forgotPasswordForm" method="post" action="/forgotPassword">
@@ -114,6 +113,7 @@
 				<button type='button' class='btn btn-block btn-primary' id='tutorSignUpSubmit'>Submit</button>
 			</form>
 		</div>
+		<button class= 'btn btn-link' id='forgotPassword'>Forgot Password?</button>
 		<div id="signup-buttons">
 			<button class= 'btn btn-default' id='showStudent'>Sign Up as Student</button>
 			<button class= 'btn btn-default' id='showTutor'>Sign Up as Tutor</button>
