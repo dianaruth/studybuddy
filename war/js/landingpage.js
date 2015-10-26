@@ -41,6 +41,7 @@ $(function(){
 		$('#showLogin').hide();
 		$('#showTutor').show();
 		$('#showStudent').show();
+		$('#forgotPassword').show();
 	})
 	
 	// forgot password button clicked
@@ -49,7 +50,7 @@ $(function(){
 		$('#tutorSignUp').hide();
 		$('#login').hide();
 		$('#forgotPasswordForm').show();
-		$('#forgotPassword').show();
+		$('#forgotPassword').hide();
 		$('#showLogin').show();
 		$('#showTutor').show();
 		$('#showStudent').show();
