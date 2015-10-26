@@ -13,7 +13,7 @@ $(function() {
 		else {
 			$('#student-passwords-dont-match').append("Passwords do not match.");
 			$('#studentPassword1').val("");
-			$('#studentPassword1').val("");
+			$('#studentPassword2').val("");
 		}
 	})
 })
