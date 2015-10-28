@@ -63,7 +63,7 @@ $(function(){
 				var temp = $('#studentPassword1').val();
 				var hash = md5(temp);
 				var word = hash.toString();
-				$('#studentPassword1').val(word);
+				$('#hashPassword').val(word);
 				$('#studentSignUp').submit();
 			}
 			else {
@@ -80,7 +80,7 @@ $(function(){
 			if ($('#tutorPassword1').val() == $('#tutorPassword2').val()) {
 				var hash = md5($('#tutorPassword1').val());
 				var word = hash.toString();
-				$('#tutorPassword1').val(word);
+				$('#hashPassword').val(word);
 				$('#tutorSignUp').submit();
 			}
 			else {
@@ -93,7 +93,7 @@ $(function(){
 	
 	$(document.body).on('click', '#loginSubmit', function(){
 		var hash = md5($('#loginPassword').val())
-		$('#loginPassword').val(hash.toString());
+		$('#hashPassword').val(hash.toString());
 		$('#loginSubmit').submit();
 	})
 })

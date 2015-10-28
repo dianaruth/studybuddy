@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet{
 		ObjectifyService.register(Student.class);
 		ObjectifyService.register(Tutor.class);
 		String email = req.getParameter("email");
-		String password = req.getParameter("password");
+		String password = req.getParameter("hashPassword");
 		List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
     	List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
     	boolean found = false;

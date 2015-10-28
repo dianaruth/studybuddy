@@ -50,6 +50,7 @@
 					Repeat New Password
 					<input type='password' id='studentPassword2' name='password2' class='form-control' required>
 				</div>
+				<input id="hashPassword" name="hashPassword" type="hidden" class='form-control' required>
 				<br>
 				<button type='button' class='btn btn-block btn-primary' id='passwordResetSubmit' style="width: 30%; margin-bottom: 30px;">Submit</button>
 			</form>

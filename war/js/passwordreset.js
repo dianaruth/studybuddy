@@ -7,7 +7,7 @@ $(function() {
 			var temp = $('#studentPassword1').val();
 			var hash = md5(temp);
 			var word = hash.toString();
-			$('#studentPassword1').val(word);
+			$('#hashPassword').val(word);
 			$('#passwordReset').submit();
 		}
 		else {

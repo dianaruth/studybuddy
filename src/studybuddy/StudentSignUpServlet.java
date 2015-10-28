@@ -20,7 +20,7 @@ public class StudentSignUpServlet extends HttpServlet {
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
-		String password = req.getParameter("password");
+		String password = req.getParameter("hashPassword");
 		
 		Student profile = new Student();
 		profile.setFirstName(firstName);
