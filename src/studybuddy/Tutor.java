@@ -7,9 +7,9 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 /**
- * The class to be made when a tutor account is opened. It contains all of the information
+ * The class extends Person and implements Subject. It should be made when a tutor account is opened. It contains all of the information
  * needed to keep tutors and student subscribers up to date.
- *
+ * Add code here if it belongs to Tutor but should not affect Student.
  */
 
 @Entity

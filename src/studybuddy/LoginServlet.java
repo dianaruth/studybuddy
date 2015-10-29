@@ -13,6 +13,11 @@ import studybuddy.Student;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+/**
+ * This servlet verifies the account information of a user after a login attempt and, if the user is found,
+ * stores a cookie and sends the user to the dashboard. 
+ *
+ */
 public class LoginServlet extends HttpServlet{
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException

@@ -10,7 +10,7 @@ import com.googlecode.objectify.annotation.Id;
  * 
  * This is the student class. It extends the person class and implements Observer.
  * It contains the student's first and last name, their email, and a list of the tutors they
- *  are subscribed to.
+ *  are subscribed to. Add code here if it belongs to students but should not affect tutors.
  *
  */
 

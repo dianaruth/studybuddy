@@ -1,7 +1,8 @@
 package studybuddy;
 
 /** 
-* Person class defines a user  
+* Person class defines a user and it is extended by tutor and student. This is where all of the code goes that should be
+* shared between student and tutor class. 
 * Includes basic information of any type of user
 * This class can be extended to define more specific users
 */
@@ -19,13 +20,32 @@ public class Person {
 	 */
 	public String getEmail(){ return email; }
 	
+	/**
+	 * 
+	 * @param number: The random number generated when a user requests a password change. This number is used to validate the user's id.
+	 */
 	public void setChangeCode(int number){ changeCode = number; }
 	
+	/** 
+	 * 
+	 * @return the random integer that was generated during the password reset request. Used for security.
+	 */
 	public int getChangeCode(){ return changeCode; }
 	
+	/**
+	 * Sets the boolean passChange to true. Used when a user requests a password change.
+	 */
 	public void setPassChange(){ passChange = true;}
 	
+	/**
+	 * Sets the passChange to false so that the user's password cannot be changed.
+	 */
 	public void resetPassChange(){ passChange = false; }
+	
+	/**
+	 * 
+	 * @return passChange. If this boolean is not true, the user's password should not be changed.
+	 */
 	
 	public boolean getPassChange(){ return passChange; }
 	
@@ -72,7 +92,7 @@ public class Person {
 	public void setLastName(String name){ lastName = name;}
 	
 	/** 
-	 * @param whether or not person is a tutor
+	 * @param whether or not person is a tutor. Used for user interface.
 	 */
 	public void setIsTutor(boolean tutor){ isTutor = tutor;}
 }
