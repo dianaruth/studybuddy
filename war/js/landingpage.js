@@ -60,10 +60,6 @@ $(function(){
 	$(document.body).on('click', '#studentSignUpSubmit', function(){
 		if ($('#studentFirstName').val().length > 0 && $('#studentLastName').val().length > 0 && $('#studentEmail').val().length > 0) {
 			if ($('#studentPassword1').val() == $('#studentPassword2').val()) {
-				var temp = $('#studentPassword1').val();
-				var hash = md5(temp);
-				var word = hash.toString();
-				$('#hashPassword').val(word);
 				$('#studentSignUp').submit();
 			}
 			else {
@@ -78,9 +74,6 @@ $(function(){
 	$(document.body).on('click', '#tutorSignUpSubmit', function(){
 		if($('#tutorFirstName').val().length > 0 && $('#tutorLastName').val().length > 0 && $('#tutorEmail').val().length > 0 && $('#tutorRate').val().length > 0) {
 			if ($('#tutorPassword1').val() == $('#tutorPassword2').val()) {
-				var hash = md5($('#tutorPassword1').val());
-				var word = hash.toString();
-				$('#hashPassword').val(word);
 				$('#tutorSignUp').submit();
 			}
 			else {
@@ -92,8 +85,6 @@ $(function(){
 	})
 	
 	$(document.body).on('click', '#loginSubmit', function(){
-		var hash = md5($('#loginPassword').val())
-		$('#hashPassword').val(hash.toString());
 		$('#loginSubmit').submit();
 	})
 })

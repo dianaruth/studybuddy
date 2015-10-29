@@ -3,6 +3,8 @@ package studybuddy;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.mail.Message;
@@ -25,7 +27,15 @@ public class PasswordResetServlet extends HttpServlet {
 		ObjectifyService.register(Tutor.class);
 		String email = (String) req.getSession().getAttribute("email");
 		String changeCodeString = (String)req.getSession().getAttribute("number");;
-		String newPassword = req.getParameter("hashPassword");
+		String passwordString = req.getParameter("password");
+		byte[] passBytes = passwordString.getBytes("UTF-8");
+		MessageDigest md = null;
+		try {
+			 md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		byte[] password = md.digest(passBytes);
 		int changeCode = 1;
 		try
 		{ changeCode = Integer.parseInt(changeCodeString);}
@@ -53,7 +63,7 @@ public class PasswordResetServlet extends HttpServlet {
         	}
        	}
        	if (found && p.getPassChange() && changeCode == p.getChangeCode()) {
-       		p.setPassword(newPassword);
+       		p.setPassword(password);
        		p.resetPassChange();
        		p.setChangeCode(0);
        		ofy().save().entity(p).now();

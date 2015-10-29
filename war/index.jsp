@@ -14,7 +14,6 @@
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 	<script src="//use.edgefonts.net/just-another-hand;londrina-sketch.js"></script>
 	<script src='js/landingpage.js'></script>
-	<script src='js/MD5.js'></script>
 	
 </head>
 
@@ -44,7 +43,6 @@
 					Password
 					<input id="loginPassword" name="password" type="password" class='form-control' required>
 				</div>
-					<input id="hashPassword" name="hashPassword" type="hidden" class='form-control' required>
 				<br>
 				<input type='submit' class='btn btn-block btn-primary' id='loginSubmit' value='Submit'>
 			</form>
@@ -79,7 +77,6 @@
 					Repeat Password
 					<input type='password' id='studentPassword2' name='password2' class='form-control' required>
 				</div>
-				<input id="hashPassword" name="hashPassword" type="hidden" class='form-control' required>
 				<br>
 				<button type='button' class='btn btn-block btn-primary' id='studentSignUpSubmit'>Submit</button>
 			</form>
@@ -111,7 +108,6 @@
 					Repeat Password
 					<input type='password' id='tutorPassword2' name='password2' class='form-control' required>
 				</div>
-				<input id="hashPassword" name="hashPassword" type="hidden" class='form-control' required>
 				<br>
 				<button type='button' class='btn btn-block btn-primary' id='tutorSignUpSubmit'>Submit</button>
 			</form>

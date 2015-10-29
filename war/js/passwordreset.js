@@ -4,10 +4,6 @@ $(function() {
 	
 	$(document.body).on('click', '#passwordResetSubmit', function(){
 		if ($('#studentPassword1').val() == $('#studentPassword2').val()) {
-			var temp = $('#studentPassword1').val();
-			var hash = md5(temp);
-			var word = hash.toString();
-			$('#hashPassword').val(word);
 			$('#passwordReset').submit();
 		}
 		else {

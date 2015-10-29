@@ -1,16 +1,20 @@
 package studybuddy;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.googlecode.objectify.ObjectifyService;
+
 import studybuddy.Tutor;
 import studybuddy.Student;
-
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 /**
@@ -25,7 +29,15 @@ public class LoginServlet extends HttpServlet{
 		ObjectifyService.register(Student.class);
 		ObjectifyService.register(Tutor.class);
 		String email = req.getParameter("email");
-		String password = req.getParameter("hashPassword");
+		String passwordString = req.getParameter("password");
+		byte[] passBytes = passwordString.getBytes("UTF-8");
+		MessageDigest md = null;
+		try {
+			 md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		byte[] password = md.digest(passBytes);
 		List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
     	List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
     	boolean found = false;
@@ -34,7 +46,7 @@ public class LoginServlet extends HttpServlet{
     	Tutor t;
     	for (int i = 0; i < students.size(); i++) {
     		s = students.get(i);
-    		if (s.getEmail().equals(email) && s.getPassword().equals(password)) {
+    		if (s.getEmail().equals(email) && Arrays.equals(s.getPassword(), password)) {
     			found = true;
     			cookieEmail = s.getEmail();
     			break;
@@ -43,7 +55,7 @@ public class LoginServlet extends HttpServlet{
     	if (!found) {
         	for (int i = 0; i < tutors.size(); i++) {
         		t = tutors.get(i);
-        		if (t.getEmail().equals(email) && t.getPassword().equals(password)) {
+        		if (t.getEmail().equals(email) && Arrays.equals(t.getPassword(), password)) {
         			found = true;
         			cookieEmail = t.getEmail();
         			break;

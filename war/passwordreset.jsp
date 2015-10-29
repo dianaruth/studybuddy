@@ -13,7 +13,6 @@
 	<script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
 	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 	<script src="//use.edgefonts.net/just-another-hand;londrina-sketch.js"></script>
-	<script src='js/MD5.js'></script>
 	<script src='js/passwordreset.js'></script>
 
 </head>
@@ -50,7 +49,6 @@
 					Repeat New Password
 					<input type='password' id='studentPassword2' name='password2' class='form-control' required>
 				</div>
-				<input id="hashPassword" name="hashPassword" type="hidden" class='form-control' required>
 				<br>
 				<button type='button' class='btn btn-block btn-primary' id='passwordResetSubmit' style="width: 30%; margin-bottom: 30px;">Submit</button>
 			</form>

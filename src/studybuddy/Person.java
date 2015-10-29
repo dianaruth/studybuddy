@@ -10,7 +10,7 @@ public class Person {
 	protected String firstName;
 	protected String lastName;
 	protected String email;
-	protected String password;
+	protected byte[] password;
 	protected boolean passChange;
 	protected int changeCode;
 	protected boolean isTutor;
@@ -50,10 +50,10 @@ public class Person {
 	public boolean getPassChange(){ return passChange; }
 	
 	/**
-	 * @return password of person
+	 * @return An MD5 hash of the password of person
 	 */
 	
-	public String getPassword() { return password; }
+	public byte[] getPassword() { return password; }
 	
 	/** 
 	 * @return first name of person
@@ -77,9 +77,9 @@ public class Person {
 	public void setEmail(String email){ this.email = email; }
 	
 	/**
-	 * @param password
+	 * @param password: an MD5 hash of the user's password
 	 */
-	public void setPassword(String password){ this.password = password; }
+	public void setPassword(byte[] password){ this.password = password; }
 	
 	/** 
 	 * @param first name of person
