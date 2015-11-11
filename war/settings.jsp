@@ -56,6 +56,7 @@ if (!found) {
 }
 pageContext.setAttribute("first_name", user.getFirstName());
 pageContext.setAttribute("last_name", user.getLastName());
+pageContext.setAttribute("email", user.getEmail());
 %>
 
 <!DOCTYPE html>
@@ -69,12 +70,12 @@ pageContext.setAttribute("last_name", user.getLastName());
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Study Buddy - Dashboard</title>
+    <title>Study Buddy - Settings</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/settings.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -173,32 +174,51 @@ pageContext.setAttribute("last_name", user.getLastName());
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <%
-                        if (user.getIsTutor()) {
-                        %>
-                        <h1 class="page-header">
-                        	Find Students
-                            <!-- <small>Subheading</small> -->
-                        </h1>
-                        <p>You are browsing as a Tutor</p>
-                        <%
-                        }
-                        else {
-                        %>
-                        <h1 class="page-header">
-                        	Find Tutors
-                            <!-- <small>Subheading</small> -->
-                        </h1>
-                        <p>You are browsing as a Student</p>
-                        <%
-                        }
-                        %>
-                    </div>
+                	<h1>Change Profile Information</h1>
                 </div>
-                <!-- /.row -->
+               	<form id="form" method="post" action="/saveProfileInformation">
+               		<div class="row">
+	                	<div class="col-lg-offset-1 col-lg-4 col-lg-offset-2">
+	                		First Name*
+	                		<input id="first-name" class="form-input" type="text" value="${fn:escapeXml(first_name)}" required>
+	                	</div>
+	                	<div class="col-lg-4 col-lg-offset 1">
+	                		Last Name*
+	                		<input id="last-name" class="form-input" type="text" value="${fn:escapeXml(last_name)}" required>
+	                	</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+	                		Email*
+	                		<input id="email" class="form-input" type="email" value="${fn:escapeXml(email)}" required>
+	                	</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+                			<h4>Change Password</h4>
+                			<div id="passwords-dont-match"></div>
+                		</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+	                		New Password
+	                		<input id="password" class="form-input" type="password">
+	                	</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+	                		Retype New Password
+	                		<input id="password2" class="form-input" type="password">
+	                	</div>
+                	</div>
+                	<br>
+                	<div class="row">
+                		<div class="col-lg-offset=1 col-lg-10 col-lg-offset-1 form-submit">
+                			<button type='button' class='btn btn-block btn-primary' id='submit-button'>Save</button>
+                		</div>
+                	</div>
+               	</form>
 
             </div>
             <!-- /.container-fluid -->
@@ -215,7 +235,7 @@ pageContext.setAttribute("last_name", user.getLastName());
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     
-    <script src="js/dashboard.js"></script>
+    <script src="js/settings.js"></script>
 
 </body>
 
