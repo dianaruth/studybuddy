@@ -84,9 +84,11 @@ public class SaveProfileInformationServlet extends HttpServlet {
     			Cookie cookie = new Cookie("email", email);
     			resp.addCookie(cookie);
            	}
-           	resp.sendRedirect("/dashboard.jsp");
+           	resp.sendRedirect("/settings.jsp");
        	}
-       	resp.sendRedirect("/index.jsp");
+       	else {
+       		resp.sendRedirect("/index.jsp");
+       	}
 	}
 
 }
