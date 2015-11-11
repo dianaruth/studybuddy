@@ -181,17 +181,17 @@ pageContext.setAttribute("email", user.getEmail());
                		<div class="row">
 	                	<div class="col-lg-offset-1 col-lg-4 col-lg-offset-2">
 	                		First Name*
-	                		<input id="first-name" class="form-input" type="text" value="${fn:escapeXml(first_name)}" required>
+	                		<input id="first-name" name="first-name" class="form-input" type="text" value="${fn:escapeXml(first_name)}" required>
 	                	</div>
 	                	<div class="col-lg-4 col-lg-offset 1">
 	                		Last Name*
-	                		<input id="last-name" class="form-input" type="text" value="${fn:escapeXml(last_name)}" required>
+	                		<input id="last-name" name="last-name" class="form-input" type="text" value="${fn:escapeXml(last_name)}" required>
 	                	</div>
                 	</div>
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
 	                		Email*
-	                		<input id="email" class="form-input" type="email" value="${fn:escapeXml(email)}" required>
+	                		<input id="email" name="email" class="form-input" type="email" value="${fn:escapeXml(email)}" required>
 	                	</div>
                 	</div>
                 	<div class="row">
@@ -203,7 +203,7 @@ pageContext.setAttribute("email", user.getEmail());
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
 	                		New Password
-	                		<input id="password" class="form-input" type="password">
+	                		<input id="password" name = "password" class="form-input" type="password">
 	                	</div>
                 	</div>
                 	<div class="row">
