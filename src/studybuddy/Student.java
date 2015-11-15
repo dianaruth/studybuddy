@@ -23,7 +23,7 @@ public class Student extends Person implements Observer {
 	
 	private ArrayList<Tutor> subs = new ArrayList<Tutor>();
 	private ArrayList<Action> actions = new ArrayList<Action>();
-	private ArrayList<Integer> tried = new ArrayList<Integer>();
+	private ArrayList<String> tried = new ArrayList<String>();
 	
 	/**
 	 * 
@@ -38,11 +38,11 @@ public class Student extends Person implements Observer {
 		subs.add(tutor);
 	}
 	
-	public void addTried(int attempt){ tried.add(attempt);}
+	public void addTried(String attempt){ tried.add(attempt);}
 	
-	public boolean alreadyTried(int attempt){ return tried.contains(attempt);}
+	public boolean alreadyTried(String attempt){ return tried.contains(attempt);}
 	
-	public void clearTried(){tried = new ArrayList<Integer>();}
+	public void clearTried(){tried = new ArrayList<String>();}
 	
 	/**
 	 * 

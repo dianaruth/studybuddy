@@ -55,20 +55,26 @@ if (!found) {
 	response.sendRedirect("/index.jsp");
 }
 Student s = new Student();
-if(!p.getIsTutor())
+pageContext.setAttribute("tutor_first_name", null);
+pageContext.setAttribute("tutor_last_name", null);
+if(!p.getIsTutor() && tutors.size() > 0)
 {
 	s = (Student) p;
 	int i = 0;
-		while(i < tutors.size() && s.alreadyTried(i))
+		while(i < tutors.size() && s.alreadyTried(tutors.get(i).getEmail()))
 			i++;
 		if(i == tutors.size())
 		{
 			s.clearTried();
 			i = 0;
+			ObjectifyService.ofy().save().entity(s).now();
 		}
 		else
-			s.addTried(i);
-		if(tutors.get(i) != null && tutors.get(i) != null)
+		{
+			s.addTried(tutors.get(i).getEmail());
+			ObjectifyService.ofy().save().entity(s).now();
+		}
+		if(tutors.get(i) != null)
 		{
 			pageContext.setAttribute("tutor_first_name", tutors.get(i).getFirstName());
 			pageContext.setAttribute("tutor_last_name", tutors.get(i).getLastName());
@@ -214,6 +220,7 @@ pageContext.setAttribute("last_name", user.getLastName());
                         </h1>
                         <p>You are browsing as a Student</p>
                         <p>${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_last_name)}</p>
+                        <a href="/dashboard.jsp">Get next tutor</a>
                         <%
                         }
                         %>
