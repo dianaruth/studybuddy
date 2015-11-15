@@ -55,6 +55,7 @@ public class GetTutorServlet extends HttpServlet {
 			{
 				req.setAttribute("tutor_first_name", tutors.get(i).getFirstName());
 				req.setAttribute("tutor_last_name", tutors.get(i).getLastName());
+				req.setAttribute("tutor_price","$" + tutors.get(i).getPrice());
 			}
 		}
 		ServletContext sc = getServletContext();

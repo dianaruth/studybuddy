@@ -190,7 +190,7 @@ pageContext.setAttribute("email", user.getEmail());
                         </h1>
                         <p>You are browsing as a Student</p>
                         <a href="/getTutor">tutor</a>
-                        ${fn:escapeXml(tutor_first_name)}
+                        <p>${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_price)}</p>
                         <%
                         }
                         %>
