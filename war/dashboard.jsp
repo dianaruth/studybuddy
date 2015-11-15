@@ -9,23 +9,18 @@
 
 <%
 Cookie[] cookies = request.getCookies();
-
 if (cookies.length == 0) {
 	response.sendRedirect("/index.jsp");
 }
-
 String email = null;
-
 for(Cookie cookie : cookies){
     if("email".equals(cookie.getName())){
         email = cookie.getValue();
     }
 }
-
 if (email == null) {
 	response.sendRedirect("/index.jsp");
 }
-
 Person user = null;
 ObjectifyService.register(Student.class);
 ObjectifyService.register(Tutor.class);
@@ -54,34 +49,9 @@ if (!found) {
 if (!found) {
 	response.sendRedirect("/index.jsp");
 }
-Student s = new Student();
-pageContext.setAttribute("tutor_first_name", null);
-pageContext.setAttribute("tutor_last_name", null);
-if(!p.getIsTutor() && tutors.size() > 0)
-{
-	s = (Student) p;
-	int i = 0;
-		while(i < tutors.size() && s.alreadyTried(tutors.get(i).getEmail()))
-			i++;
-		if(i == tutors.size())
-		{
-			s.clearTried();
-			i = 0;
-			ObjectifyService.ofy().save().entity(s).now();
-		}
-		else
-		{
-			s.addTried(tutors.get(i).getEmail());
-			ObjectifyService.ofy().save().entity(s).now();
-		}
-		if(tutors.get(i) != null)
-		{
-			pageContext.setAttribute("tutor_first_name", tutors.get(i).getFirstName());
-			pageContext.setAttribute("tutor_last_name", tutors.get(i).getLastName());
-		}
-}
 pageContext.setAttribute("first_name", user.getFirstName());
 pageContext.setAttribute("last_name", user.getLastName());
+pageContext.setAttribute("email", user.getEmail());
 %>
 
 <!DOCTYPE html>
@@ -219,8 +189,8 @@ pageContext.setAttribute("last_name", user.getLastName());
                             <!-- <small>Subheading</small> -->
                         </h1>
                         <p>You are browsing as a Student</p>
-                        <p>${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_last_name)}</p>
-                        <a href="/dashboard.jsp">Get next tutor</a>
+                        <a href="/getTutor">tutor</a>
+                        ${fn:escapeXml(tutor_first_name)}
                         <%
                         }
                         %>
