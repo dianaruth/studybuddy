@@ -189,7 +189,9 @@ pageContext.setAttribute("email", user.getEmail());
                             <!-- <small>Subheading</small> -->
                         </h1>
                         <p>You are browsing as a Student</p>
-                        <a href="/getTutor">tutor</a>
+                        <form id='getTutor' method='get' action='/getTutor'>
+							<input type="submit" value="NextTutor" />
+						</form>
                         <p>${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_price)}</p>
                         <%
                         }

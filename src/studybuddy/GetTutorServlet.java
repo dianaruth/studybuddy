@@ -36,26 +36,28 @@ public class GetTutorServlet extends HttpServlet {
 		}
 		if(tutors.size() > 0)
 		{
-			int i = 0;
-			while(i < tutors.size() && s.alreadyTried(tutors.get(i).getEmail()))
-				i++;
-			if(i == tutors.size())
+			Tutor t = null;
+			int i;
+			for(i = 0; i < tutors.size(); i++)
 			{
+				if(!s.alreadyTried(tutors.get(i).getEmail()) && !s.getSubs().contains(tutors.get(i)))
+				{
+					t = tutors.get(i);
+					req.setAttribute("tutor_first_name", t.getFirstName());
+					req.setAttribute("tutor_last_name", t.getLastName());
+					req.setAttribute("tutor_price","$" + t.getPrice());
+					s.addTried(t.getEmail());
+					ofy().save().entity(s).now();
+					break;
+				}
+			}
+			if(t == null)
+			{
+				req.setAttribute("tutor_first_name", "Out of tutors");
+				req.setAttribute("tutor_last_name", " ");
+				req.setAttribute("tutor_price", " ");
 				s.clearTried();
-				i = 0;
-				s.addTried(tutors.get(i).getEmail());
 				ofy().save().entity(s).now();
-			}
-			else
-			{
-				s.addTried(tutors.get(i).getEmail());
-				ofy().save().entity(s).now();
-			}
-			if(tutors.get(i) != null)
-			{
-				req.setAttribute("tutor_first_name", tutors.get(i).getFirstName());
-				req.setAttribute("tutor_last_name", tutors.get(i).getLastName());
-				req.setAttribute("tutor_price","$" + tutors.get(i).getPrice());
 			}
 		}
 		ServletContext sc = getServletContext();

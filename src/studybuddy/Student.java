@@ -40,7 +40,15 @@ public class Student extends Person implements Observer {
 	
 	public void addTried(String attempt){ tried.add(attempt);}
 	
-	public boolean alreadyTried(String attempt){ return tried.contains(attempt);}
+	public boolean alreadyTried(String attempt)
+	{ 
+		for(int i = 0; i < tried.size(); i ++)
+		{
+			if(tried.get(i).equals(attempt))
+				return true;
+		}
+		return false;
+	}
 	
 	public void clearTried(){tried = new ArrayList<String>();}
 	
