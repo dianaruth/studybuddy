@@ -54,6 +54,26 @@ if (!found) {
 if (!found) {
 	response.sendRedirect("/index.jsp");
 }
+Student s = new Student();
+if(!p.getIsTutor())
+{
+	s = (Student) p;
+	int i = 0;
+		while(i < tutors.size() && s.alreadyTried(i))
+			i++;
+		if(i == tutors.size())
+		{
+			s.clearTried();
+			i = 0;
+		}
+		else
+			s.addTried(i);
+		if(tutors.get(i) != null && tutors.get(i) != null)
+		{
+			pageContext.setAttribute("tutor_first_name", tutors.get(i).getFirstName());
+			pageContext.setAttribute("tutor_last_name", tutors.get(i).getLastName());
+		}
+}
 pageContext.setAttribute("first_name", user.getFirstName());
 pageContext.setAttribute("last_name", user.getLastName());
 %>
@@ -193,6 +213,7 @@ pageContext.setAttribute("last_name", user.getLastName());
                             <!-- <small>Subheading</small> -->
                         </h1>
                         <p>You are browsing as a Student</p>
+                        <p>${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_last_name)}</p>
                         <%
                         }
                         %>
