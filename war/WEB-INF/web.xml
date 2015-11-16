@@ -24,6 +24,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   	</servlet-mapping>
   	
   	<servlet>
+    	<servlet-name>subscribe</servlet-name>
+    	<servlet-class>studybuddy.SubscribeServlet</servlet-class>
+  	</servlet>
+
+  	<servlet-mapping>
+    	<servlet-name>subscribe</servlet-name>
+    	<url-pattern>/subscribe</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
     	<servlet-name>logout</servlet-name>
     	<servlet-class>studybuddy.LogoutServlet</servlet-class>
   	</servlet>

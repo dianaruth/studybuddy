@@ -21,9 +21,10 @@ public class Student extends Person implements Observer {
 	@Id Long id;
 	private Subject tutorSubject;
 	
-	private ArrayList<Tutor> subs = new ArrayList<Tutor>();
+	private ArrayList<String> subs = new ArrayList<String>();
 	private ArrayList<Action> actions = new ArrayList<Action>();
 	private ArrayList<String> tried = new ArrayList<String>();
+	private ArrayList<Action> log = new ArrayList<Action>();
 	
 	/**
 	 * 
@@ -35,7 +36,7 @@ public class Student extends Person implements Observer {
 	 */
 	public void subscribe(Tutor tutor) {
 		tutor.registerObserver(this);
-		subs.add(tutor);
+		subs.add(tutor.getEmail());
 	}
 	
 	public void addTried(String attempt){ tried.add(attempt);}
@@ -60,19 +61,15 @@ public class Student extends Person implements Observer {
 	 */
 	public void unsubscribe(Tutor tutor){
 		tutor.removeObserver(this);
-		subs.remove(tutor);
+		subs.remove(tutor.getEmail());
 	}
 	
 	/**
 	 * @param updateMeddage: The information about the update performed by the tutor to be sent in the email
 	 *
 	 * This method is called any time a tutor that the student is subscribed to 
-	 * updates prices or subjects. It then sends the student an email with the update info.
+	 * updates prices or subjects. It then stores the action in a log to be displayed on the site.
 	 */
-	public void update(Action action){
-		sendEmailUpdate(action.getAction());
-		
-	}
 	
 	public void addAction(Action action)
 	{
@@ -85,7 +82,7 @@ public class Student extends Person implements Observer {
 	 *  Used for when the student deletes their account and we need to delete them from 
 	 *  every tutor subscribers list.
 	 */
-	public ArrayList<Tutor> getSubs(){return subs;}
+	public ArrayList<String> getSubs(){return subs;}
 	
 	/**
 	 * Takes care of actually sending the email to the student when an update occurs in a
@@ -96,6 +93,11 @@ public class Student extends Person implements Observer {
 	private void sendEmailUpdate(String updateMessage){
 		EmailServlet email = new EmailServlet(this);
 		email.sendEmail(updateMessage);
+	}
+
+	@Override
+	public void update(Action action) {
+		log.add(action);
 	}
 
 }

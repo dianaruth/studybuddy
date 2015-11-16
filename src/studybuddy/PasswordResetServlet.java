@@ -26,7 +26,7 @@ public class PasswordResetServlet extends HttpServlet {
 		ObjectifyService.register(Student.class);
 		ObjectifyService.register(Tutor.class);
 		String email = (String) req.getSession().getAttribute("email");
-		String changeCodeString = (String)req.getSession().getAttribute("number");;
+		String changeCodeString = (String)req.getSession().getAttribute("number");
 		String passwordString = req.getParameter("password");
 		byte[] passBytes = passwordString.getBytes("UTF-8");
 		MessageDigest md = null;

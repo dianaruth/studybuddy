@@ -5,6 +5,8 @@
 <%@ page import="studybuddy.Student" %>
 <%@ page import="studybuddy.Person" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
+<%@ page import="javax.servlet.ServletContext" %>
+<%@ page import="javax.servlet.RequestDispatcher" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
@@ -52,6 +54,7 @@ if (!found) {
 pageContext.setAttribute("first_name", user.getFirstName());
 pageContext.setAttribute("last_name", user.getLastName());
 pageContext.setAttribute("email", user.getEmail());
+session.setAttribute("email", user.getEmail());
 %>
 
 <!DOCTYPE html>
@@ -193,8 +196,13 @@ pageContext.setAttribute("email", user.getEmail());
 							<input type="submit" value="NextTutor" />
 						</form>
                         <p>${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_price)}</p>
+                        <form id='subTutor' method='get' action='/subscribe'>
+							<input type="submit" value="Subscribe to this tutor" />
+						</form>
                         <%
                         }
+     					String temp = (String) request.getAttribute("tutor_email");
+                        session.setAttribute("tutor_email", temp);
                         %>
                     </div>
                 </div>
