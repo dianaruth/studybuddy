@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.googlecode.objectify.ObjectifyService;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,7 +36,7 @@ public class GetTutorServlet extends HttpServlet {
 			int i;
 			for(i = 0; i < tutors.size(); i++)
 			{
-				if(!s.alreadyTried(tutors.get(i).getEmail()) && !s.getSubs().contains(tutors.get(i)))
+				if(!s.alreadyTried(tutors.get(i).getEmail()) && !s.getSubs().contains(tutors.get(i).getEmail()))
 				{
 					t = tutors.get(i);
 					s.addTried(t.getEmail());

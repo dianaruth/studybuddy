@@ -39,6 +39,8 @@ public class Student extends Person implements Observer {
 		subs.add(tutor.getEmail());
 	}
 	
+	public ArrayList<String> getTried(){ return tried;}
+	
 	public void addTried(String attempt){ tried.add(attempt);}
 	
 	public boolean alreadyTried(String attempt)

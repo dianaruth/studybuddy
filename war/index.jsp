@@ -30,6 +30,8 @@
 		<%
 			if(error != null && error.equals("loginError"))
 				pageContext.setAttribute("msg", "Either the email or the password that you have entered was not found. Please try again.");
+			else if(error != null && error.equals("signupError"))
+				pageContext.setAttribute("msg", "The email that you entered is already used for an account. Please try again.");
 		%>
 		<font color="red"> ${fn:escapeXml(msg)} </font>
 		<div id="forms">
