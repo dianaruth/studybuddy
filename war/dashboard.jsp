@@ -112,9 +112,6 @@ session.setAttribute("email", user.getEmail());
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${fn:escapeXml(first_name)} ${fn:escapeXml(last_name)} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
                             <a href="settings.jsp"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -133,7 +130,7 @@ session.setAttribute("email", user.getEmail());
                         <a href="dashboard.jsp"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="dashboard.jsp"><i class="fa fa-fw fa-group"></i> 
+                        <a href="matches.jsp"><i class="fa fa-fw fa-group"></i> 
                         <%
                         if (user.getIsTutor()) {
                         %> 
@@ -188,17 +185,30 @@ session.setAttribute("email", user.getEmail());
                         else {
                         %>
                         <h1 class="page-header">
-                        	Find Tutors
-                            <!-- <small>Subheading</small> -->
+                        	Welcome, ${fn:escapeXml(first_name)}!
                         </h1>
-                        <p>You are browsing as a Student</p>
-                        <form id='getTutor' method='get' action='/getTutor'>
-							<input type="submit" value="NextTutor" />
-						</form>
-                        <p>${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_price)}</p>
-                        <form id='subTutor' method='get' action='/subscribe'>
-							<input type="submit" value="Subscribe to this tutor" />
-						</form>
+                        <div class="container" id="option">
+	                        <div class="row">
+	                        	<div class="col-sm-offset-3 col-sm-4">
+	                        		<h2 class="optionLabel">${fn:escapeXml(tutor_first_name)}</h2>
+	                        	</div>
+	                        	<div class="col-sm-3">
+	                        		<h3 class="optionLabel">$ ${fn:escapeXml(tutor_price)}/hr</h3>
+	                        	</div>
+	                        </div>
+	                        <br>
+	                        <div class="row">
+                        		<form id='subTutor' method='get' action='/subscribe'>
+									<input class="btn btn-primary" type="submit" value="Subscribe to this Tutor" />
+								</form>
+	                        </div>
+	                        <br>
+	                        <div class="row">
+                        		<form id='getTutor' method='get' action='/getTutor'>
+									<input class="btn btn-info" type="submit" value="View Next Tutor" />
+								</form>
+	                        </div>
+	                    </div>
                         <%
                         }
      					String temp = (String) request.getAttribute("tutor_email");

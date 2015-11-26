@@ -17,8 +17,8 @@
 
 </head>
 
-<body>
-<%
+	<body>
+	<%
 	String number = request.getParameter("number");
 	String email = request.getParameter("email");
 	if(number != null && email != null){
@@ -34,10 +34,9 @@
 		<div id="title">
 			<h1 id="title">Study Buddy</h1>
 			<h1 id="subtitle">Find your buddy.</h1>
-			
 		</div>
 	
-	<form id='passwordReset' method='post' action='/passwordReset'>
+			<form id='passwordReset' method='post' action='/passwordReset'>
 				<hr>
 				<h3>Password Reset</h3>
 				<div id="student-passwords-dont-match"></div>
@@ -54,4 +53,5 @@
 			</form>
 		</div>
 
-</body>
+	</body>
+</html>

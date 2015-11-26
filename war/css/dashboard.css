@@ -10,3 +10,25 @@
     background-color: transparent;
     cursor: pointer;
 }
+
+#option {
+	background: #404040;
+	width: 90%;
+	margin: 40px;
+	padding: 40px;
+	border-radius: 15px;
+}
+
+#subTutor {
+	text-align:center;
+	margin:auto;
+}
+
+#getTutor {
+	text-align:center;
+	margin:auto;
+}
+
+.optionLabel {
+	color: white;
+}

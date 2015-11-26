@@ -114,9 +114,6 @@ pageContext.setAttribute("email", user.getEmail());
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${fn:escapeXml(first_name)} ${fn:escapeXml(last_name)} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                        </li>
-                        <li>
                             <a href="settings.jsp"><i class="fa fa-fw fa-gear"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
@@ -135,7 +132,7 @@ pageContext.setAttribute("email", user.getEmail());
                         <a href="dashboard.jsp"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="dashboard.jsp"><i class="fa fa-fw fa-group"></i> 
+                        <a href="matches.jsp"><i class="fa fa-fw fa-group"></i> 
                         <%
                         if (user.getIsTutor()) {
                         %> 
