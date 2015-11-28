@@ -78,6 +78,10 @@ public class Tutor extends Person implements Subject{
 		int index = subscribers.indexOf(name.getEmail());
 		subscribers.remove(index);
 	}
+	
+	public ArrayList<String> getSubscribers() {
+		return subscribers;
+	}
 
 	/**
 	 * Notifies all of this tutor's subscribers of any change to the tutor's price or subjects.
@@ -92,7 +96,7 @@ public class Tutor extends Person implements Subject{
 		
 	}
 	
-	private Student getStudent(String email)
+	public Student getStudent(String email)
 	{
 		ObjectifyService.register(Student.class);
 		List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();

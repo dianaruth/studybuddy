@@ -2,7 +2,9 @@ package studybuddy;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
@@ -100,6 +102,20 @@ public class Student extends Person implements Observer {
 	@Override
 	public void update(Action action) {
 		log.add(action);
+	}
+	
+	public Tutor getTutor(String email)
+	{
+		ObjectifyService.register(Tutor.class);
+		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
+		Tutor t = null;
+		for (int i = 0; i < tutors.size(); i++) {
+			if (tutors.get(i).getEmail().equals(email))
+			{
+				return tutors.get(i);
+			}
+		}
+		return null;
 	}
 
 }
