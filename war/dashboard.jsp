@@ -190,18 +190,22 @@ session.setAttribute("email", user.getEmail());
                         <div class="container" id="option">
 	                        <div class="row">
 	                        	<div class="col-sm-offset-3 col-sm-4">
-	                        		<h2 class="optionLabel">${fn:escapeXml(tutor_first_name)}</h2>
+	                        		<h2 class="optionLabel">${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_last_name)}</h2>
 	                        	</div>
 	                        	<div class="col-sm-3">
-	                        		<h3 class="optionLabel">$ ${fn:escapeXml(tutor_price)}/hr</h3>
+	                        		<h3 class="optionLabel"> ${fn:escapeXml(tutor_price)}</h3>
 	                        	</div>
 	                        </div>
 	                        <br>
+	                        <%
+	                        if(session.getAttribute("tutor_last_name") != null){%>
 	                        <div class="row">
                         		<form id='subTutor' method='get' action='/subscribe'>
 									<input class="btn btn-primary" type="submit" value="Subscribe to this Tutor" />
 								</form>
 	                        </div>
+	                        <%}
+	                        else{}%>
 	                        <br>
 	                        <div class="row">
                         		<form id='getTutor' method='get' action='/getTutor'>

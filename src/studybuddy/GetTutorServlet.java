@@ -43,7 +43,7 @@ public class GetTutorServlet extends HttpServlet {
 					ofy().save().entity(s).now();
 					req.setAttribute("tutor_first_name", t.getFirstName());
 					req.setAttribute("tutor_last_name", t.getLastName());
-					req.setAttribute("tutor_price","$" + t.getPrice());
+					req.setAttribute("tutor_price","$" + t.getPrice() + "/hr");
 					req.setAttribute("tutor_email", t.getEmail());
 					break;
 				}
