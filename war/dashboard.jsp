@@ -198,7 +198,7 @@ session.setAttribute("email", user.getEmail());
 	                        </div>
 	                        <br>
 	                        <%
-	                        if(session.getAttribute("tutor_last_name") != null){%>
+	                        if(request.getAttribute("tutor_first_name") != null){%>
 	                        <div class="row">
                         		<form id='subTutor' method='get' action='/subscribe'>
 									<input class="btn btn-primary" type="submit" value="Subscribe to this Tutor" />
