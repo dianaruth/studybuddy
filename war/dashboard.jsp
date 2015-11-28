@@ -204,14 +204,21 @@ session.setAttribute("email", user.getEmail());
 									<input class="btn btn-primary" type="submit" value="Subscribe to this Tutor" />
 								</form>
 	                        </div>
-	                        <%}
-	                        else{}%>
 	                        <br>
 	                        <div class="row">
                         		<form id='getTutor' method='get' action='/getTutor'>
 									<input class="btn btn-info" type="submit" value="View Next Tutor" />
 								</form>
 	                        </div>
+	                        <%}
+	                        else{ %>
+	                        <div class="row">
+                        		<form id='getTutor' method='get' action='/getTutor'>
+									<input class="btn btn-default" type="submit" value="Start Browsing Tutors" />
+								</form>
+	                        </div>
+	                        <%
+	                        }%>
 	                    </div>
                         <%
                         }

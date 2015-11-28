@@ -53,7 +53,7 @@ public class Student extends Person implements Observer {
 		return false;
 	}
 	
-	public void clearTried(){tried = new ArrayList<String>();}
+	public void clearTried(){tried.clear();}
 	
 	/**
 	 * 
