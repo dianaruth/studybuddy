@@ -16,28 +16,29 @@ import java.util.*;
 public class ChangeSubjectServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-		Properties props = new Properties();
-		Session session = Session.getDefaultInstance(props, null);
-		try {
-			ObjectifyService.register(Student.class);
-			ObjectifyService.register(Tutor.class);
-			List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
-			List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
-			String email = (String) req.getSession().getAttribute("email");
-			Tutor t = new Tutor();
-			for(int i = 0; i < tutors.size(); i += 1) {
-				t = tutors.get(i);
-        		if (t.getEmail().equals(email)) {
-        			break;
-        		}
-			}
-			
-			
+		ObjectifyService.register(Student.class);
+		ObjectifyService.register(Tutor.class);
+		List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
+		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
+		String email = (String) req.getParameter("email");
+		String subject = (String) req.getParameter("subject");
+		Object add = req.getParameter("add");
+		Person p = null;
+		for(int i = 0; i < tutors.size(); i += 1) {
+			p = tutors.get(i);
+       		if (p.getEmail().equals(email)) {
+       			break;
+       		}
 		}
-		catch (AddressException e) {
-		    e.printStackTrace();
+		for(int i = 0; i < students.size(); i += 1) {
+			p = students.get(i);
+       		if (p.getEmail().equals(email)) {
+       			break;
+       		}
 		}
-		catch (MessagingException e) {
-		    e.printStackTrace();
-		}
+		if(add != null)
+			p.addSubject(subject);
+		else
+			p.removeSubject(subject);
+	}
 }

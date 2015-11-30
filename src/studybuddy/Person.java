@@ -1,5 +1,7 @@
 package studybuddy;
 
+import java.util.ArrayList;
+
 /** 
 * Person class defines a user and it is extended by tutor and student. This is where all of the code goes that should be
 * shared between student and tutor class. 
@@ -14,6 +16,26 @@ public class Person {
 	protected boolean passChange;
 	protected int changeCode;
 	protected boolean isTutor;
+	protected ArrayList<String> subjects = new ArrayList<String>();
+	
+	
+	/** 
+	 * Adds a subject and notifies all of the subscribers of the change.
+	 * @param subject: The subject to add to the tutor's list of subjects.
+	 */
+	public void addSubject(String subject){
+		subjects.add(subject);
+	}
+	
+	/**
+	 * Removes a subject and notifies all subscribers of the change.
+	 * @param subject: The subject to remove from the tutor's list of subjects.
+	 */
+	public void removeSubject(String subject)
+	{
+		int i = subjects.indexOf(subject);
+		subjects.remove(i);		
+	}
 	
 	/** 
 	 * @return email of person

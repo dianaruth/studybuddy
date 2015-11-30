@@ -20,7 +20,6 @@ public class Tutor extends Person implements Subject{
 	
 	@Id Long id;
 	private double price;
-	private ArrayList<String> subjects = new ArrayList<String>();
 	private ArrayList<String> subscribers = new ArrayList<String>();
 	
 	/**
