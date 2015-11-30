@@ -1,19 +1,32 @@
 package studybuddy;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import javax.persistence.metamodel.Entity;
+import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
+
 /**
  * 
  * This is the student class. It extends the person class and implements Observer.
  * It contains the student's first and last name, their email, and a list of the tutors they
- *  are subscribed to.
+ *  are subscribed to. Add code here if it belongs to students but should not affect tutors.
  *
  */
+
+@Entity
+
 public class Student extends Person implements Observer {
 	
+	@Id Long id;
 	private Subject tutorSubject;
-	private ArrayList<Tutor> subs = new ArrayList<Tutor>();
+	
+	private ArrayList<String> subs = new ArrayList<String>();
+	private ArrayList<Action> actions = new ArrayList<Action>();
+	private ArrayList<String> tried = new ArrayList<String>();
+	private ArrayList<Action> log = new ArrayList<Action>();
 	
 	/**
 	 * 
@@ -25,8 +38,24 @@ public class Student extends Person implements Observer {
 	 */
 	public void subscribe(Tutor tutor) {
 		tutor.registerObserver(this);
-		subs.add(tutor);
+		subs.add(tutor.getEmail());
 	}
+	
+	public ArrayList<String> getTried(){ return tried;}
+	
+	public void addTried(String attempt){ tried.add(attempt);}
+	
+	public boolean alreadyTried(String attempt)
+	{ 
+		for(int i = 0; i < tried.size(); i ++)
+		{
+			if(tried.get(i).equals(attempt))
+				return true;
+		}
+		return false;
+	}
+	
+	public void clearTried(){tried.clear();}
 	
 	/**
 	 * 
@@ -36,17 +65,19 @@ public class Student extends Person implements Observer {
 	 */
 	public void unsubscribe(Tutor tutor){
 		tutor.removeObserver(this);
-		subs.remove(tutor);
+		subs.remove(tutor.getEmail());
 	}
 	
 	/**
 	 * @param updateMeddage: The information about the update performed by the tutor to be sent in the email
 	 *
 	 * This method is called any time a tutor that the student is subscribed to 
-	 * updates prices or subjects. It then sends the student an email with the update info.
+	 * updates prices or subjects. It then stores the action in a log to be displayed on the site.
 	 */
-	public void update(String updateMessage){
-		sendEmailUpdate(updateMessage);
+	
+	public void addAction(Action action)
+	{
+		actions.add(action);
 	}
 	
 	/**
@@ -55,7 +86,7 @@ public class Student extends Person implements Observer {
 	 *  Used for when the student deletes their account and we need to delete them from 
 	 *  every tutor subscribers list.
 	 */
-	public ArrayList<Tutor> getSubs(){return subs;}
+	public ArrayList<String> getSubs(){return subs;}
 	
 	/**
 	 * Takes care of actually sending the email to the student when an update occurs in a
@@ -66,6 +97,25 @@ public class Student extends Person implements Observer {
 	private void sendEmailUpdate(String updateMessage){
 		EmailServlet email = new EmailServlet(this);
 		email.sendEmail(updateMessage);
+	}
+
+	@Override
+	public void update(Action action) {
+		log.add(action);
+	}
+	
+	public Tutor getTutor(String email)
+	{
+		ObjectifyService.register(Tutor.class);
+		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
+		Tutor t = null;
+		for (int i = 0; i < tutors.size(); i++) {
+			if (tutors.get(i).getEmail().equals(email))
+			{
+				return tutors.get(i);
+			}
+		}
+		return null;
 	}
 
 }

@@ -5,24 +5,27 @@
 <%@ page import="studybuddy.Student" %>
 <%@ page import="studybuddy.Person" %>
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
-<%@ page import="javax.servlet.ServletContext" %>
-<%@ page import="javax.servlet.RequestDispatcher" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
 Cookie[] cookies = request.getCookies();
+
 if (cookies.length == 0) {
 	response.sendRedirect("/index.jsp");
 }
+
 String email = null;
+
 for(Cookie cookie : cookies){
     if("email".equals(cookie.getName())){
         email = cookie.getValue();
     }
 }
+
 if (email == null) {
 	response.sendRedirect("/index.jsp");
 }
+
 Person user = null;
 ObjectifyService.register(Student.class);
 ObjectifyService.register(Tutor.class);
@@ -54,7 +57,6 @@ if (!found) {
 pageContext.setAttribute("first_name", user.getFirstName());
 pageContext.setAttribute("last_name", user.getLastName());
 pageContext.setAttribute("email", user.getEmail());
-session.setAttribute("email", user.getEmail());
 %>
 
 <!DOCTYPE html>
@@ -68,12 +70,12 @@ session.setAttribute("email", user.getEmail());
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Study Buddy - Dashboard</title>
+    <title>Study Buddy - Settings</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/settings.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -169,65 +171,51 @@ session.setAttribute("email", user.getEmail());
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <%
-                        if (user.getIsTutor()) {
-                        %>
-                        <h1 class="page-header">
-                        	Find Students
-                            <!-- <small>Subheading</small> -->
-                        </h1>
-                        <p>You are browsing as a Tutor</p>
-                        <%
-                        }
-                        else {
-                        %>
-                        <h1 class="page-header">
-                        	Welcome, ${fn:escapeXml(first_name)}!
-                        </h1>
-                        <div class="container" id="option">
-	                        <div class="row">
-	                        	<div class="col-sm-offset-3 col-sm-4">
-	                        		<h2 class="optionLabel">${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_last_name)}</h2>
-	                        	</div>
-	                        	<div class="col-sm-3">
-	                        		<h3 class="optionLabel"> ${fn:escapeXml(tutor_price)}</h3>
-	                        	</div>
-	                        </div>
-	                        <br>
-	                        <%
-	                        if(request.getAttribute("tutor_first_name") != null){%>
-	                        <div class="row">
-                        		<form id='subTutor' method='get' action='/subscribe'>
-									<input class="btn btn-primary" type="submit" value="Subscribe to this Tutor" />
-								</form>
-	                        </div>
-	                        <br>
-	                        <div class="row">
-                        		<form id='getTutor' method='get' action='/getTutor'>
-									<input class="btn btn-info" type="submit" value="View Next Tutor" />
-								</form>
-	                        </div>
-	                        <%}
-	                        else{ %>
-	                        <div class="row">
-                        		<form id='getTutor' method='get' action='/getTutor'>
-									<input class="btn btn-default" type="submit" value="Start Browsing Tutors" />
-								</form>
-	                        </div>
-	                        <%
-	                        }%>
-	                    </div>
-                        <%
-                        }
-     					String temp = (String) request.getAttribute("tutor_email");
-                        session.setAttribute("tutor_email", temp);
-                        %>
-                    </div>
+                	<h1>Change Profile Information</h1>
                 </div>
-                <!-- /.row -->
+               	<form id="form" method="post" action="/saveProfileInformation">
+               		<div class="row">
+	                	<div class="col-lg-offset-1 col-lg-4 col-lg-offset-2">
+	                		First Name*
+	                		<input id="first-name" name="first-name" class="form-input" type="text" value="${fn:escapeXml(first_name)}" required>
+	                	</div>
+	                	<div class="col-lg-4 col-lg-offset 1">
+	                		Last Name*
+	                		<input id="last-name" name="last-name" class="form-input" type="text" value="${fn:escapeXml(last_name)}" required>
+	                	</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+	                		Email*
+	                		<input id="email" name="email" class="form-input" type="email" value="${fn:escapeXml(email)}" required>
+	                	</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+                			<h4>Change Password</h4>
+                			<div id="passwords-dont-match"></div>
+                		</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+	                		New Password
+	                		<input id="password" name = "password" class="form-input" type="password">
+	                	</div>
+                	</div>
+                	<div class="row">
+                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
+	                		Retype New Password
+	                		<input id="password2" class="form-input" type="password">
+	                	</div>
+                	</div>
+                	<br>
+                	<div class="row">
+                		<div class="col-lg-offset=1 col-lg-10 col-lg-offset-1 form-submit">
+                			<button type='button' class='btn btn-block btn-primary' id='submit-button'>Save</button>
+                		</div>
+                	</div>
+               	</form>
 
             </div>
             <!-- /.container-fluid -->
@@ -244,7 +232,7 @@ session.setAttribute("email", user.getEmail());
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     
-    <script src="js/dashboard.js"></script>
+    <script src="js/settings.js"></script>
 
 </body>
 

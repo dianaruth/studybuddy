@@ -7,6 +7,7 @@
 <%@ page import="com.googlecode.objectify.ObjectifyService" %>
 <%@ page import="javax.servlet.ServletContext" %>
 <%@ page import="javax.servlet.RequestDispatcher" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
@@ -68,12 +69,12 @@ session.setAttribute("email", user.getEmail());
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Study Buddy - Dashboard</title>
+    <title>Study Buddy - Matches</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="css/matches.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/sb-admin.css" rel="stylesheet">
@@ -175,55 +176,63 @@ session.setAttribute("email", user.getEmail());
                         <%
                         if (user.getIsTutor()) {
                         %>
-                        <h1 class="page-header">
-                        	Find Students
-                            <!-- <small>Subheading</small> -->
-                        </h1>
-                        <p>You are browsing as a Tutor</p>
+                        	<h2>Your Students</h2>
+                        	<br>
+                        	<table class="table table-hover">
+                        		<tr>
+                        			<th>#</th>
+                        			<th>First Name</th>
+                        			<th>Last Name</th>
+                        			<th>Email</th>
+                        		</tr>
+                        		<%
+                        		Tutor t = (Tutor)user;
+                        		ArrayList<String> subscribers = t.getSubscribers();
+                        		for (int i = 0; i < subscribers.size(); i++) { 
+                        			Student s = t.getStudent(subscribers.get(i));
+                        		%>
+                        			<tr>
+                        				<td><% out.print(i + 1); %></td>
+                        				<td><% out.print(s.getFirstName()); %></td>
+                        				<td><% out.print(s.getLastName()); %></td>
+                        				<td><% out.print(s.getEmail()); %></td>
+                        			</tr>
+                        		<%
+                        		}
+                        		%>
+							</table>
                         <%
                         }
-                        else {
-                        %>
-                        <h1 class="page-header">
-                        	Welcome, ${fn:escapeXml(first_name)}!
-                        </h1>
-                        <div class="container" id="option">
-	                        <div class="row">
-	                        	<div class="col-sm-offset-3 col-sm-4">
-	                        		<h2 class="optionLabel">${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_last_name)}</h2>
-	                        	</div>
-	                        	<div class="col-sm-3">
-	                        		<h3 class="optionLabel"> ${fn:escapeXml(tutor_price)}</h3>
-	                        	</div>
-	                        </div>
-	                        <br>
-	                        <%
-	                        if(request.getAttribute("tutor_first_name") != null){%>
-	                        <div class="row">
-                        		<form id='subTutor' method='get' action='/subscribe'>
-									<input class="btn btn-primary" type="submit" value="Subscribe to this Tutor" />
-								</form>
-	                        </div>
-	                        <br>
-	                        <div class="row">
-                        		<form id='getTutor' method='get' action='/getTutor'>
-									<input class="btn btn-info" type="submit" value="View Next Tutor" />
-								</form>
-	                        </div>
-	                        <%}
-	                        else{ %>
-	                        <div class="row">
-                        		<form id='getTutor' method='get' action='/getTutor'>
-									<input class="btn btn-default" type="submit" value="Start Browsing Tutors" />
-								</form>
-	                        </div>
-	                        <%
-	                        }%>
-	                    </div>
+                        else { %>
+                        	<h2>Your Tutors</h2>
+                        	<br>
+                        	<table class="table table-hover">
+                        		<tr>
+                        			<th>#</th>
+                        			<th>First Name</th>
+                        			<th>Last Name</th>
+                        			<th>Email</th>
+                        			<th>Price</th>
+                        		</tr>
+                        		<%
+                        		Student s = (Student)user;
+                        		ArrayList<String> subscribers = s.getSubs();
+                        		for (int i = 0; i < subscribers.size(); i++) { 
+                        			Tutor t = s.getTutor(subscribers.get(i));
+                        		%>
+                        			<tr>
+                        				<td><% out.print(i + 1); %></td>
+                        				<td><% out.print(t.getFirstName()); %></td>
+                        				<td><% out.print(t.getLastName()); %></td>
+                        				<td><% out.print(t.getEmail()); %></td>
+                        				<td><% out.print("$" + t.getPrice() + "/hr"); %>
+                        			</tr>
+                        		<%
+                        		}
+                        		%>
+							</table>
                         <%
                         }
-     					String temp = (String) request.getAttribute("tutor_email");
-                        session.setAttribute("tutor_email", temp);
                         %>
                     </div>
                 </div>
@@ -244,7 +253,7 @@ session.setAttribute("email", user.getEmail());
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     
-    <script src="js/dashboard.js"></script>
+    <script src="js/matches.js"></script>
 
 </body>
 

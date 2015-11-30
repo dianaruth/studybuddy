@@ -1,19 +1,27 @@
 package studybuddy;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import javax.persistence.metamodel.Entity;
+import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 
 /**
- * The class to be made when a tutor account is opened. It contains all of the information
+ * The class extends Person and implements Subject. It should be made when a tutor account is opened. It contains all of the information
  * needed to keep tutors and student subscribers up to date.
- *
+ * Add code here if it belongs to Tutor but should not affect Student.
  */
+
+@Entity
+
 public class Tutor extends Person implements Subject{
 	
+	@Id Long id;
 	private double price;
 	private ArrayList<String> subjects = new ArrayList<String>();
-	private ArrayList<Observer> subscribers = new ArrayList<Observer>();
+	private ArrayList<String> subscribers = new ArrayList<String>();
 	
 	/**
 	 * Sets a price for this tutor and notifies all subscribers of the change.
@@ -61,26 +69,45 @@ public class Tutor extends Person implements Subject{
 	/**
 	 * Adds a student to the list of this tutor's subscribers.
 	 */
-	public void registerObserver(Student name){ subscribers.add(name);}
+	public void registerObserver(Student name){ subscribers.add(name.getEmail());}
 	
 	/**
 	 * Removes a student from this tutor's list of subscribers.
 	 */
 	public void removeObserver(Student name){ 
-		int index = subscribers.indexOf(name);
+		int index = subscribers.indexOf(name.getEmail());
 		subscribers.remove(index);
+	}
+	
+	public ArrayList<String> getSubscribers() {
+		return subscribers;
 	}
 
 	/**
 	 * Notifies all of this tutor's subscribers of any change to the tutor's price or subjects.
 	 */
 	public void notifyObservers(String msg) {
+		Date date = new Date();
 		for(int i = 0; i < subscribers.size(); i++)
 		{
-			subscribers.get(i).update(msg);
+			Student s = getStudent(subscribers.get(i));
+			s.update(new Action(this, date, msg));
 		}
 		
 	}
-
+	
+	public Student getStudent(String email)
+	{
+		ObjectifyService.register(Student.class);
+		List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
+		Student s = null;
+		for (int i = 0; i < students.size(); i++) {
+			if (students.get(i).getEmail().equals(email))
+			{
+				return students.get(i);
+			}
+		}
+		return null;
+	}
 	
 }

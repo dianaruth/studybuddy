@@ -1,7 +1,8 @@
 package studybuddy;
 
 /** 
-* Person class defines a user  
+* Person class defines a user and it is extended by tutor and student. This is where all of the code goes that should be
+* shared between student and tutor class. 
 * Includes basic information of any type of user
 * This class can be extended to define more specific users
 */
@@ -9,7 +10,10 @@ public class Person {
 	protected String firstName;
 	protected String lastName;
 	protected String email;
-	protected String password;
+	protected byte[] password;
+	protected boolean passChange;
+	protected int changeCode;
+	protected boolean isTutor;
 	
 	/** 
 	 * @return email of person
@@ -17,10 +21,39 @@ public class Person {
 	public String getEmail(){ return email; }
 	
 	/**
-	 * @return password of person
+	 * 
+	 * @param number: The random number generated when a user requests a password change. This number is used to validate the user's id.
+	 */
+	public void setChangeCode(int number){ changeCode = number; }
+	
+	/** 
+	 * 
+	 * @return the random integer that was generated during the password reset request. Used for security.
+	 */
+	public int getChangeCode(){ return changeCode; }
+	
+	/**
+	 * Sets the boolean passChange to true. Used when a user requests a password change.
+	 */
+	public void setPassChange(){ passChange = true;}
+	
+	/**
+	 * Sets the passChange to false so that the user's password cannot be changed.
+	 */
+	public void resetPassChange(){ passChange = false; }
+	
+	/**
+	 * 
+	 * @return passChange. If this boolean is not true, the user's password should not be changed.
 	 */
 	
-	public String getPassword() { return password; }
+	public boolean getPassChange(){ return passChange; }
+	
+	/**
+	 * @return An MD5 hash of the password of person
+	 */
+	
+	public byte[] getPassword() { return password; }
 	
 	/** 
 	 * @return first name of person
@@ -33,15 +66,20 @@ public class Person {
 	 */
 	public String getLastName(){ return lastName; }
 	
+	/**
+	 * @return whether or not the person is a tutor
+	 */
+	public boolean getIsTutor() { return isTutor;}
+	
 	/** 
 	 * @param email address of person
 	 */
 	public void setEmail(String email){ this.email = email; }
 	
 	/**
-	 * @param password
+	 * @param password: an MD5 hash of the user's password
 	 */
-	public void setPassword(String password){ this.password = password; }
+	public void setPassword(byte[] password){ this.password = password; }
 	
 	/** 
 	 * @param first name of person
@@ -52,4 +90,9 @@ public class Person {
 	 * @param last name of person
 	 */
 	public void setLastName(String name){ lastName = name;}
+	
+	/** 
+	 * @param whether or not person is a tutor. Used for user interface.
+	 */
+	public void setIsTutor(boolean tutor){ isTutor = tutor;}
 }
