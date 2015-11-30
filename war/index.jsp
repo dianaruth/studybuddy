@@ -1,7 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collections" %>
+<%@ page import="studybuddy.Tutor" %>
+<%@ page import="studybuddy.Student" %>
+<%@ page import="studybuddy.Person" %>
+<%@ page import="com.googlecode.objectify.ObjectifyService" %>
+<%@ page import="javax.servlet.ServletContext" %>
+<%@ page import="javax.servlet.RequestDispatcher" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<%
+Cookie[] cookies = request.getCookies();
+if (cookies.length == 0) {
+	response.sendRedirect("/index.jsp");
+}
+String email = null;
+for(Cookie cookie : cookies){
+    if("email".equals(cookie.getName())){
+        email = cookie.getValue();
+    }
+}
+if (email != null) {
+	response.sendRedirect("/dashboard.jsp");
+}
+%>
 
 <!DOCTYPE html>
 <html>

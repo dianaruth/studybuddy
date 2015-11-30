@@ -228,9 +228,12 @@ session.setAttribute("email", user.getEmail());
                         				<td><% out.print(t.getLastName()); %></td>
                         				<td><% out.print(t.getEmail()); %></td>
                         				<td><% out.print("$" + t.getPrice() + "/hr"); %>
-                        				<td><form id='unsubTutor' method='get' action='/unsubscribe'>
-									<input class="btn btn-primary" type="submit" value="Unsubscribe from this Tutor" />
-									</form></td>
+                        				<td>
+                        					<form id='unsubTutor' method='get' action='/unsubscribe'>
+												<input class="btn btn-primary" type="submit" value="Unsubscribe" />
+												<input name="unsubEmail" value="<% out.print(t.getEmail()); %>" class="hidden">
+											</form>
+										</td>
                         			</tr>
                         		<%
                         		}
