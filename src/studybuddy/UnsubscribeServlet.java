@@ -22,7 +22,7 @@ public class UnsubscribeServlet extends HttpServlet {
 		List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
 		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
 		String email = (String) req.getSession().getAttribute("email");
-		String tutorEmail = (String) req.getSession().getAttribute("tutor_email");
+		String tutorEmail = req.getParameter("unsubEmail");
 		Student s = null;
 		Tutor t = null;
 		for (int i = 0; i < students.size(); i++) {
