@@ -30,7 +30,7 @@ public class GetTutorServlet extends HttpServlet {
 				break;
 			}
 		}
-		if(tutors.size() > 0)
+		if(tutors.size() > 0 && email != null)
 		{
 			Tutor t = null;
 			int i;

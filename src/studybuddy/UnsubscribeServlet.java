@@ -40,7 +40,6 @@ public class UnsubscribeServlet extends HttpServlet {
 			}
 		}
 		s.unsubscribe(t);
-		t.removeObserver(s);
 		ofy().save().entity(s).now();
 		ofy().save().entity(t).now();
 		ServletContext sc = getServletContext();
