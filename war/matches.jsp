@@ -184,6 +184,7 @@ session.setAttribute("email", user.getEmail());
                         			<th>First Name</th>
                         			<th>Last Name</th>
                         			<th>Email</th>
+                        	
                         		</tr>
                         		<%
                         		Tutor t = (Tutor)user;
@@ -196,7 +197,7 @@ session.setAttribute("email", user.getEmail());
                         				<td><% out.print(s.getFirstName()); %></td>
                         				<td><% out.print(s.getLastName()); %></td>
                         				<td><% out.print(s.getEmail()); %></td>
-                        			</tr>
+                        	       </tr>
                         		<%
                         		}
                         		%>
@@ -213,6 +214,7 @@ session.setAttribute("email", user.getEmail());
                         			<th>Last Name</th>
                         			<th>Email</th>
                         			<th>Price</th>
+                        			<th>Unsubscribe</th>
                         		</tr>
                         		<%
                         		Student s = (Student)user;
@@ -226,6 +228,9 @@ session.setAttribute("email", user.getEmail());
                         				<td><% out.print(t.getLastName()); %></td>
                         				<td><% out.print(t.getEmail()); %></td>
                         				<td><% out.print("$" + t.getPrice() + "/hr"); %>
+                        				<td><form id='unsubTutor' method='get' action='/unsubscribe'>
+									<input class="btn btn-primary" type="submit" value="Unsubscribe from this Tutor" />
+									</form></td>
                         			</tr>
                         		<%
                         		}
