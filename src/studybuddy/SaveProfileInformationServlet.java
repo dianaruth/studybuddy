@@ -55,10 +55,13 @@ public class SaveProfileInformationServlet extends HttpServlet {
         	}
        	}
        	if (found) {
-       		p.setFirstName(firstName);
+       		if(!firstName.equals(""))
+       			p.setFirstName(firstName);
+       		if(!lastName.equals(""))
        		p.setLastName(lastName);
-       		p.setEmail(email);
-       		if (!password.equals("")) {
+       		if(!email.equals(""))
+       			p.setEmail(email);
+       		if (!passwordString.equals("")) {
        			p.setPassword(password);
        		}
        		ofy().save().entity(p).now();
