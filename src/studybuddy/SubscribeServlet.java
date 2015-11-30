@@ -40,6 +40,7 @@ public class SubscribeServlet extends HttpServlet {
 			}
 		}
 		s.subscribe(t);
+		t.registerObserver(s);
 		ofy().save().entity(s).now();
 		ofy().save().entity(t).now();
 		ServletContext sc = getServletContext();

@@ -94,14 +94,15 @@ public class Student extends Person implements Observer {
 	 * 
 	 * @param updateMessage The message to be sent to the student in the email.
 	 */
-	private void sendEmailUpdate(String updateMessage){
-		EmailServlet email = new EmailServlet(this);
-		email.sendEmail(updateMessage);
+	private void sendEmailUpdate(Action update){
+		EmailSubscribersServlet email = new EmailSubscribersServlet(this);
+		email.sendEmail(update);
 	}
 
 	@Override
 	public void update(Action action) {
 		log.add(action);
+		sendEmailUpdate(action);
 	}
 	
 	public Tutor getTutor(String email)
