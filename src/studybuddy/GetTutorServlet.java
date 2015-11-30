@@ -52,7 +52,7 @@ public class GetTutorServlet extends HttpServlet {
 			{
 				s.clearTried();
 				ofy().save().entity(s).now();
-				req.setAttribute("tutor_first_name", "Out of tutors");
+				req.setAttribute("tutor_first_name", "No more tutors to display.");
 				req.setAttribute("tutor_last_name", " ");
 				req.setAttribute("tutor_price", " ");
 			}
