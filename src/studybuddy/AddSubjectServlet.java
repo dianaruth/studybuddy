@@ -13,7 +13,7 @@ import com.googlecode.objectify.ObjectifyService;
 
 import java.util.*;
 
-public class ChangeSubjectServlet extends HttpServlet {
+public class AddSubjectServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		ObjectifyService.register(Student.class);
@@ -22,7 +22,6 @@ public class ChangeSubjectServlet extends HttpServlet {
 		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
 		String email = (String) req.getParameter("email");
 		String subject = (String) req.getParameter("subject");
-		Object add = req.getParameter("add");
 		Person p = null;
 		for(int i = 0; i < tutors.size(); i += 1) {
 			p = tutors.get(i);
@@ -36,9 +35,6 @@ public class ChangeSubjectServlet extends HttpServlet {
        			break;
        		}
 		}
-		if(add != null)
-			p.addSubject(subject);
-		else
-			p.removeSubject(subject);
+		p.addSubject(subject);
 	}
 }
