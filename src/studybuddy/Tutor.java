@@ -66,12 +66,6 @@ public class Tutor extends Person implements Subject{
 	public double getPrice(){ return price;}
 	
 	/**
-	 * 
-	 * @return The list of subjects that this tutor handles.
-	 */
-	public ArrayList<String> getSubjects(){ return subjects;}
-	
-	/**
 	 * Adds a student to the list of this tutor's subscribers.
 	 */
 	public void registerObserver(Student name){ subscribers.add(name.getEmail());}
