@@ -186,12 +186,7 @@ pageContext.setAttribute("email", user.getEmail());
 	                		<input id="last-name" name="last-name" class="form-input" type="text" value="${fn:escapeXml(last_name)}" required>
 	                	</div>
                 	</div>
-                	<div class="row">
-                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
-	                		Email*
-	                		<input id="email" name="email" class="form-input" type="email" value="${fn:escapeXml(email)}" required>
-	                	</div>
-                	</div>
+					<input class="hidden" name="email" value="${fn:escapeXml(email)}">
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
                 			<h4>Change Password</h4>
