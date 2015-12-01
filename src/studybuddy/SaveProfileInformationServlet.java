@@ -59,8 +59,6 @@ public class SaveProfileInformationServlet extends HttpServlet {
        			p.setFirstName(firstName);
        		if(!lastName.equals(""))
        		p.setLastName(lastName);
-       		if(!email.equals(""))
-       			p.setEmail(email);
        		if (!passwordString.equals("")) {
        			p.setPassword(password);
        		}
