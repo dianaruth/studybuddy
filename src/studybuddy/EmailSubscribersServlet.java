@@ -11,8 +11,7 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailSubscribersServlet {
 	   public String to;
-	   public String from;
-	   public String host;
+	   public String from = "forgotpassword@studybuddy-1105@appspotmail.com";
 	   
 	   EmailSubscribersServlet(Person student){
 		   this.to = student.getEmail();
@@ -22,7 +21,7 @@ public class EmailSubscribersServlet {
 		      Properties properties = System.getProperties();
 
 		      // Setup mail server
-		      properties.setProperty("mail.smtp.host", host);
+		      properties.setProperty("mail.smtp.host", "Localhost");
 
 		      // Get the default Session object.
 		      Session session = Session.getDefaultInstance(properties);
