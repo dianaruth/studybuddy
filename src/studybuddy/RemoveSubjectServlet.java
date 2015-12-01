@@ -36,5 +36,7 @@ public class RemoveSubjectServlet extends HttpServlet {
        		}
 		}
 		p.removeSubject(subject);
+		ofy().save().entity(p).now();
+		resp.sendRedirect("/settings.jsp");
 	}
 }

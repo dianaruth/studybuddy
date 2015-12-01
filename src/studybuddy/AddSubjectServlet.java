@@ -36,5 +36,7 @@ public class AddSubjectServlet extends HttpServlet {
        		}
 		}
 		p.addSubject(subject);
+		ofy().save().entity(p).now();
+		resp.sendRedirect("/settings.jsp");
 	}
 }
