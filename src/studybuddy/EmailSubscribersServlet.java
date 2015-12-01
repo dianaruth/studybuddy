@@ -24,7 +24,7 @@ public class EmailSubscribersServlet {
 			   Session session = Session.getDefaultInstance(props, null);
 			   String msgBody = a.getAction();
 			   Message msg = new MimeMessage(session);
-			   msg.setFrom(new InternetAddress("forgotpassword@study-buddy-1105.appspotmail.com", "Study Buddy Password Service"));
+			   msg.setFrom(new InternetAddress("priceupdate@study-buddy-1105.appspotmail.com", "Study Buddy Price Update Service"));
 			   msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to, ""));
 			   msg.setSubject("Forgot Password");
 			   msg.setText(msgBody);
