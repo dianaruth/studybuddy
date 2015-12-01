@@ -225,7 +225,7 @@ pageContext.setAttribute("email", user.getEmail());
                		<form method="post" action="/addSubject">
                			<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
                				Add a Subject
-               				<input class="hidden" value="<% user.getEmail(); %>">
+               				<input name="email" class="hidden" value="<% user.getEmail(); %>">
                				<input name="subject">
                				<input class="btn btn-primary" type="submit" value="Add Subject">
                			</div>
@@ -238,7 +238,7 @@ pageContext.setAttribute("email", user.getEmail());
 	               		<table class="table table-hover">
 	               			<tr>
 	               				<th>Subject</th>
-	               				<th>Remove</th>
+	               				<th>Remove Subject</th>
 	               			</tr>
 	               			<%
 	               			ArrayList<String> subjects = user.getSubjects();
@@ -247,10 +247,10 @@ pageContext.setAttribute("email", user.getEmail());
 	               			<tr>
 	               				<td><% out.print(subjects.get(i)); %></td>
 	               				<td>
-	               					<form method="get" action="/removeSubject">
+	               					<form method="post" action="/removeSubject">
 	               						<input name="email" class="hidden" value="<% out.print(user.getEmail()); %>">
 	               						<input name="subject" class="hidden" value="<% out.print(subjects.get(i)); %>">
-	               						<input type="submit" class="btn btn-danger" value="Remove Subject">
+	               						<input type="submit" class="btn btn-danger" value="Remove">
 	               					</form>
 	               				</td>
 	               			</tr>
