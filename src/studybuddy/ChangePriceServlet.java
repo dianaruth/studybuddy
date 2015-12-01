@@ -31,9 +31,14 @@ public class ChangePriceServlet extends HttpServlet {
 				break;
 			}
 		}
+		try
+		{
 		Double price_num = Double.parseDouble(price);
 		t.setPrice(price_num);
 		ofy().save().entity(t).now();
+		}
+		catch(NumberFormatException e){}
 		resp.sendRedirect("/dashboard.jsp");
+		
 	}
 }

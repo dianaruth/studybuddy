@@ -1,5 +1,6 @@
 package studybuddy;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -96,7 +97,11 @@ public class Student extends Person implements Observer {
 	 */
 	private void sendEmailUpdate(Action update){
 		EmailSubscribersServlet email = new EmailSubscribersServlet(this);
-		email.sendEmail(update);
+		try {
+			email.sendEmail(update);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
