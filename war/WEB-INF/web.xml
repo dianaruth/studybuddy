@@ -112,6 +112,36 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     	<servlet-name>saveProfileInformation</servlet-name>
     	<url-pattern>/saveProfileInformation</url-pattern>
   	</servlet-mapping>
+  	
+  	<servlet>
+    	<servlet-name>addSubject</servlet-name>
+    	<servlet-class>studybuddy.AddSubjectServlet</servlet-class>
+  	</servlet>
+
+  	<servlet-mapping>
+    	<servlet-name>addSubject</servlet-name>
+    	<url-pattern>/addSubject</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+    	<servlet-name>changePrice</servlet-name>
+    	<servlet-class>studybuddy.ChangePriceServlet</servlet-class>
+  	</servlet>
+
+  	<servlet-mapping>
+    	<servlet-name>changePrice</servlet-name>
+    	<url-pattern>/changePrice</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet>
+    	<servlet-name>removeSubject</servlet-name>
+    	<servlet-class>studybuddy.RemoveSubjectServlet</servlet-class>
+  	</servlet>
+
+  	<servlet-mapping>
+    	<servlet-name>removeSubject</servlet-name>
+    	<url-pattern>/removeSubject</url-pattern>
+  	</servlet-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

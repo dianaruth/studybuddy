@@ -37,6 +37,10 @@ public class Person {
 		subjects.remove(i);		
 	}
 	
+	public ArrayList<String> getSubjects() {
+		return subjects;
+	}
+	
 	/** 
 	 * @return email of person
 	 */
