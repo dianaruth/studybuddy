@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailSubscribersServlet {
 	   public String to;
-	   public String from = "forgotpassword@studybuddy-1105@appspotmail.com";
+	   public String from = "priceupdate@studybuddy-1105@appspotmail.com";
 	   
 	   EmailSubscribersServlet(Person student){
 		   this.to = student.getEmail();
