@@ -179,19 +179,14 @@ pageContext.setAttribute("email", user.getEmail());
                		<div class="row">
 	                	<div class="col-lg-offset-1 col-lg-4 col-lg-offset-2">
 	                		First Name*
-	                		<input id="first-name" name="first-name" class="form-input" type="text" value="${fn:escapeXml(first_name)}" required>
+	                		<input id="first-name" name="first-name" class="form-control" type="text" value="${fn:escapeXml(first_name)}" required>
 	                	</div>
 	                	<div class="col-lg-4 col-lg-offset 1">
 	                		Last Name*
-	                		<input id="last-name" name="last-name" class="form-input" type="text" value="${fn:escapeXml(last_name)}" required>
+	                		<input id="last-name" name="last-name" class="form-control" type="text" value="${fn:escapeXml(last_name)}" required>
 	                	</div>
                 	</div>
-                	<div class="row">
-                		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
-	                		Email*
-	                		<input id="email" name="email" class="form-input" type="email" value="${fn:escapeXml(email)}" required>
-	                	</div>
-                	</div>
+					<input class="hidden" name="email" value="${fn:escapeXml(email)}">
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
                 			<h4>Change Password</h4>
@@ -201,13 +196,13 @@ pageContext.setAttribute("email", user.getEmail());
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
 	                		New Password
-	                		<input id="password" name = "password" class="form-input" type="password">
+	                		<input id="password" name="password" class="form-control" type="password">
 	                	</div>
                 	</div>
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
 	                		Retype New Password
-	                		<input id="password2" class="form-input" type="password">
+	                		<input id="password2" class="form-control" type="password">
 	                	</div>
                 	</div>
                 	<br>
@@ -219,12 +214,15 @@ pageContext.setAttribute("email", user.getEmail());
                	</form>
                	<br>
                	<hr>
-               	<br>
                	
+               	<div class="row">
+               		<h1>Add and Remove Subjects</h1>
+               	</div>
+               	<br>
                	<div class="row">
                		<form method="post" action="/addSubject">
                			<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
-               				Add a Subject
+               				Add a Subject (ex. EE 461L)
                				<input name="subject">
                				<input class="btn btn-primary" type="submit" value="Add Subject">
                			</div>
@@ -244,7 +242,7 @@ pageContext.setAttribute("email", user.getEmail());
 	               			for (int i = 0; i < subjects.size(); i++) {
 	               			%>
 	               			<tr>
-	               				<td><% out.print(subjects.get(i)); %></td>
+	               				<td><% out.print(subjects.get(i).toUpperCase()); %></td>
 	               				<td>
 	               					<form method="post" action="/removeSubject">
 	               						<input name="email" class="hidden" value="<% out.print(user.getEmail()); %>">

@@ -6,7 +6,7 @@ $(function() {
 
 // form validation for saving profile information
 $(document.body).on('click', '#submit-button', function(){
-	if($('#first-name').val().length > 0 && $('#last-name').val().length > 0 && $('#email').val().length > 0) {
+	if($('#first-name').val().length > 0 && $('#last-name').val().length > 0) {
 		if ($('#password').val() == $('#password2').val()) {
 			$('#form').submit();
 		}

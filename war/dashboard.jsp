@@ -176,10 +176,35 @@ session.setAttribute("email", user.getEmail());
                         if (user.getIsTutor()) {
                         %>
                         <h1 class="page-header">
-                        	Find Students
-                            <!-- <small>Subheading</small> -->
+                        	Welcome, ${fn:escapeXml(first_name)}!
                         </h1>
-                        <p>You are browsing as a Tutor</p>
+                        <h3 class="page-header">
+                        	Update Your Hourly Rate
+                        </h3>
+                        <div class="row">
+                        	<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
+                        		<h4>Your current hourly rate is 
+                        		<%
+                        		Tutor t = (Tutor)user;
+                        		out.print("$" + String.format( "%.2f", t.getPrice()) + "/hr");
+                        		%>
+                        		</h4>
+                        		<h5>An email will be sent to your subscribed students when your hourly rate is updated.</h5>
+                        	</div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        	<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
+                        		<div id="info" style="color: red;"></div>
+	                        	<form id="changePriceForm" method="post" action="/changePrice">
+	                        		New Price
+	                        		<input class="hidden" name="email" value="${fn:escapeXml(email)}">
+	                        		<input id="newPrice" class="form-control" type="text" name="price">
+	                        		<br>
+		                        </form>
+		                        <a id="changePriceButton" class="btn btn-primary">Update Rate</a>
+	                        </div>
+                        </div>
                         <%
                         }
                         else {
@@ -210,7 +235,8 @@ session.setAttribute("email", user.getEmail());
 									<input class="btn btn-info" type="submit" value="View Next Tutor" />
 								</form>
 	                        </div>
-	                        <%}
+	                        <%
+	                        }
 	                        else{ %>
 	                        <div class="row">
                         		<form id='getTutor' method='get' action='/getTutor'>

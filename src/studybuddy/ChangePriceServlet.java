@@ -34,6 +34,6 @@ public class ChangePriceServlet extends HttpServlet {
 		Double price_num = Double.parseDouble(price);
 		t.setPrice(price_num);
 		ofy().save().entity(t).now();
-		resp.sendRedirect("/settings.jsp");
+		resp.sendRedirect("/dashboard.jsp");
 	}
 }

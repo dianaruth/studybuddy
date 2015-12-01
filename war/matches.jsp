@@ -184,7 +184,7 @@ session.setAttribute("email", user.getEmail());
                         			<th>First Name</th>
                         			<th>Last Name</th>
                         			<th>Email</th>
-                        	
+                        			<th>Subjects</th>
                         		</tr>
                         		<%
                         		Tutor t = (Tutor)user;
@@ -197,6 +197,18 @@ session.setAttribute("email", user.getEmail());
                         				<td><% out.print(s.getFirstName()); %></td>
                         				<td><% out.print(s.getLastName()); %></td>
                         				<td><% out.print(s.getEmail()); %></td>
+                        				<td>
+                        				<%
+                        				ArrayList<String> subjects = s.getSubjects();
+                        				String subjectString = "";
+                        				for (int j = 0; j < subjects.size(); j++) {
+                        					subjectString += subjects.get(j).toUpperCase() + ", ";
+                        				}
+                        				if (!subjectString.equals("")) {
+                        					out.print(subjectString.substring(0, subjectString.length() - 2));
+                        				}
+                        				%>
+                        				</td>
                         	       </tr>
                         		<%
                         		}
@@ -214,6 +226,7 @@ session.setAttribute("email", user.getEmail());
                         			<th>Last Name</th>
                         			<th>Email</th>
                         			<th>Price</th>
+                        			<th>Subjects</th>
                         			<th>Unsubscribe</th>
                         		</tr>
                         		<%
@@ -227,7 +240,19 @@ session.setAttribute("email", user.getEmail());
                         				<td><% out.print(t.getFirstName()); %></td>
                         				<td><% out.print(t.getLastName()); %></td>
                         				<td><% out.print(t.getEmail()); %></td>
-                        				<td><% out.print("$" + t.getPrice() + "/hr"); %>
+                        				<td><% out.print("$" + String.format( "%.2f", t.getPrice()) + "/hr"); %></td>
+                        				<td>
+                        				<%
+                        				ArrayList<String> subjects = t.getSubjects();
+                        				String subjectString = "";
+                        				for (int j = 0; j < subjects.size(); j++) {
+                        					subjectString += subjects.get(j).toUpperCase() + ", ";
+                        				}
+                        				if (!subjectString.equals("")) {
+                        					out.print(subjectString.substring(0, subjectString.length() - 2));
+                        				}
+                        				%>
+                        				</td>
                         				<td>
                         					<form id='unsubTutor' method='get' action='/unsubscribe'>
 												<input class="btn btn-primary" type="submit" value="Unsubscribe" />

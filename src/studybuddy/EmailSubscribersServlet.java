@@ -27,7 +27,7 @@ public class EmailSubscribersServlet {
 		      // Get the default Session object.
 		      Session session = Session.getDefaultInstance(properties);
 
-		      try{
+		      try {
 		         // Create a default MimeMessage object.
 		         MimeMessage message = new MimeMessage(session);
 
