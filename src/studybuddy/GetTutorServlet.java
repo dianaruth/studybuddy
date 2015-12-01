@@ -45,6 +45,17 @@ public class GetTutorServlet extends HttpServlet {
 					req.setAttribute("tutor_last_name", t.getLastName());
 					req.setAttribute("tutor_price","$" + t.getPrice() + "/hr");
 					req.setAttribute("tutor_email", t.getEmail());
+					ArrayList<String> subjects = t.getSubjects();
+    				String subjectString = "";
+    				for (int k = 0; k < subjects.size(); k++) {
+    					subjectString += subjects.get(k).toUpperCase() + ", ";
+    				}
+    				if (!subjectString.equals("")) {
+    					req.setAttribute("tutor_subjects", "Subjects: " + subjectString.substring(0, subjectString.length() - 2));
+    				}
+    				else {
+    					req.setAttribute("tutor_subjects", "This tutor has not added any subjects.");
+    				}
 					break;
 				}
 			}

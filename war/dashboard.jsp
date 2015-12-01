@@ -214,11 +214,16 @@ session.setAttribute("email", user.getEmail());
                         </h1>
                         <div class="container" id="option">
 	                        <div class="row">
-	                        	<div class="col-sm-offset-3 col-sm-4">
+	                        	<div class="col-sm-offset-1 col-sm-5">
 	                        		<h2 class="optionLabel">${fn:escapeXml(tutor_first_name)} ${fn:escapeXml(tutor_last_name)}</h2>
 	                        	</div>
-	                        	<div class="col-sm-3">
-	                        		<h3 class="optionLabel"> ${fn:escapeXml(tutor_price)}</h3>
+	                        	<div class="col-sm-5 col-sm-offset-1">
+	                        		<h3 class="optionLabel">${fn:escapeXml(tutor_price)}</h3>
+	                        	</div>
+	                        </div>
+	                        <div class="row">
+	                        	<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
+	                        		<h4 class="optionLabel">${fn:escapeXml(tutor_subjects)}</h4>
 	                        	</div>
 	                        </div>
 	                        <br>
