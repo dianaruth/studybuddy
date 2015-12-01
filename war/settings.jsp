@@ -225,7 +225,6 @@ pageContext.setAttribute("email", user.getEmail());
                		<form method="post" action="/addSubject">
                			<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
                				Add a Subject
-               				<input name="email" class="hidden" value="<% user.getEmail(); %>">
                				<input name="subject">
                				<input class="btn btn-primary" type="submit" value="Add Subject">
                			</div>

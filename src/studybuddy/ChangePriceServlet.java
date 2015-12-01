@@ -20,7 +20,7 @@ public class ChangePriceServlet extends HttpServlet {
 		ObjectifyService.register(Student.class);
 		ObjectifyService.register(Tutor.class);
 		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
-		String tutorEmail = (String) req.getParameter("email");
+		String tutorEmail = (String) req.getSession().getAttribute("email");
 		String price = (String) req.getParameter("price");
 		Tutor t = new Tutor();
 		

@@ -24,7 +24,9 @@ public class Person {
 	 * @param subject: The subject to add to the tutor's list of subjects.
 	 */
 	public void addSubject(String subject){
-		subjects.add(subject);
+		subject = subject.toLowerCase();
+		if(!subjects.contains(subject))
+			subjects.add(subject);
 	}
 	
 	/**
@@ -33,8 +35,12 @@ public class Person {
 	 */
 	public void removeSubject(String subject)
 	{
-		int i = subjects.indexOf(subject);
-		subjects.remove(i);		
+		subject = subject.toLowerCase();
+		if(subjects.contains(subject))
+		{
+			int i = subjects.indexOf(subject);
+			subjects.remove(i);		
+		}
 	}
 	
 	public ArrayList<String> getSubjects() {

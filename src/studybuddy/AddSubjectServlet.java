@@ -20,7 +20,7 @@ public class AddSubjectServlet extends HttpServlet {
 		ObjectifyService.register(Tutor.class);
 		List<Student> students = ObjectifyService.ofy().load().type(Student.class).list();
 		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
-		String email = (String) req.getParameter("email");
+		String email = (String) req.getSession().getAttribute("email");
 		String subject = (String) req.getParameter("subject");
 		Person p = null;
 		for(int i = 0; i < tutors.size(); i += 1) {

@@ -37,8 +37,12 @@ public class Tutor extends Person implements Subject{
 	 * @param subject: The subject to add to the tutor's list of subjects.
 	 */
 	public void addSubject(String subject){
-		subjects.add(subject);
-		notifyObservers(firstName + " " + lastName + " has added the subject " + subject + ".");
+		subject = subject.toLowerCase();
+		if(!subjects.contains(subject))
+		{
+			subjects.add(subject);
+			notifyObservers(firstName + " " + lastName + " has added the subject " + subject + ".");
+		}
 	}
 	
 	/**
@@ -48,9 +52,11 @@ public class Tutor extends Person implements Subject{
 	public void removeSubject(String subject)
 	{
 		int i = subjects.indexOf(subject);
-		subjects.remove(i);
-		notifyObservers(firstName + " " + lastName + " has removed the following subject from their list of tutored subjects: " + subject + ".");
-		
+		if(subjects.contains(subject))
+		{
+			subjects.remove(i);
+			notifyObservers(firstName + " " + lastName + " has removed the following subject from their list of tutored subjects: " + subject + ".");
+		}
 	}
 	
 	/**
