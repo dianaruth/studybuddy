@@ -240,7 +240,7 @@ session.setAttribute("email", user.getEmail());
                         				<td><% out.print(t.getFirstName()); %></td>
                         				<td><% out.print(t.getLastName()); %></td>
                         				<td><% out.print(t.getEmail()); %></td>
-                        				<td><% out.print("$" + t.getPrice() + "/hr"); %></td>
+                        				<td><% out.print("$" + String.format( "%.2f", t.getPrice()) + "/hr"); %></td>
                         				<td>
                         				<%
                         				ArrayList<String> subjects = t.getSubjects();

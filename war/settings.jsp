@@ -179,11 +179,11 @@ pageContext.setAttribute("email", user.getEmail());
                		<div class="row">
 	                	<div class="col-lg-offset-1 col-lg-4 col-lg-offset-2">
 	                		First Name*
-	                		<input id="first-name" name="first-name" class="form-input" type="text" value="${fn:escapeXml(first_name)}" required>
+	                		<input id="first-name" name="first-name" class="form-control" type="text" value="${fn:escapeXml(first_name)}" required>
 	                	</div>
 	                	<div class="col-lg-4 col-lg-offset 1">
 	                		Last Name*
-	                		<input id="last-name" name="last-name" class="form-input" type="text" value="${fn:escapeXml(last_name)}" required>
+	                		<input id="last-name" name="last-name" class="form-control" type="text" value="${fn:escapeXml(last_name)}" required>
 	                	</div>
                 	</div>
 					<input class="hidden" name="email" value="${fn:escapeXml(email)}">
@@ -196,13 +196,13 @@ pageContext.setAttribute("email", user.getEmail());
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
 	                		New Password
-	                		<input id="password" name = "password" class="form-input" type="password">
+	                		<input id="password" name="password" class="form-control" type="password">
 	                	</div>
                 	</div>
                 	<div class="row">
                 		<div class="col-lg-offset-1 col-lg-10 col-lg-offset-1 form-div">
 	                		Retype New Password
-	                		<input id="password2" class="form-input" type="password">
+	                		<input id="password2" class="form-control" type="password">
 	                	</div>
                 	</div>
                 	<br>
