@@ -28,7 +28,7 @@ public class Tutor extends Person implements Subject{
 	 */
 	public void setPrice(double number){ 
 		price = number;
-		String msg = new String(firstName + " " + lastName + " has updated their price to " + number + ".");
+		String msg = new String(firstName + " " + lastName + " has updated their price to $" + String.format( "%.2f", number) + "/hr.");
 		notifyObservers(msg);
 	}
 	
