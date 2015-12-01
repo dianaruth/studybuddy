@@ -224,7 +224,7 @@ pageContext.setAttribute("email", user.getEmail());
                	<div class="row">
                		<form method="post" action="/addSubject">
                			<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">
-               				Add a Subject
+               				Add a Subject (ex. EE 461L)
                				<input name="subject">
                				<input class="btn btn-primary" type="submit" value="Add Subject">
                			</div>
@@ -244,7 +244,7 @@ pageContext.setAttribute("email", user.getEmail());
 	               			for (int i = 0; i < subjects.size(); i++) {
 	               			%>
 	               			<tr>
-	               				<td><% out.print(subjects.get(i)); %></td>
+	               				<td><% out.print(subjects.get(i).toUpperCase()); %></td>
 	               				<td>
 	               					<form method="post" action="/removeSubject">
 	               						<input name="email" class="hidden" value="<% out.print(user.getEmail()); %>">

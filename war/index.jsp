@@ -10,10 +10,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <%
-Cookie[] cookies = request.getCookies();
-if (cookies == null || cookies.length == 0) {
-	response.sendRedirect("/index.jsp");
-}
+/* Cookie[] cookies = request.getCookies();
 String email = null;
 for(Cookie cookie : cookies){
     if("email".equals(cookie.getName())){
@@ -23,7 +20,7 @@ for(Cookie cookie : cookies){
 if (email != null) {
 	response.sendRedirect("/dashboard.jsp");
 }
-else{}
+else{} */
 %>
 
 <!DOCTYPE html>
