@@ -11,7 +11,6 @@ $(function() {
 			$("#info").html("Error: Your hourly rate needs to be a number.");
 		}
 		else {
-			alert("yes");
 			$('#changePriceForm').submit();
 		}
 	})
