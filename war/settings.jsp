@@ -214,8 +214,11 @@ pageContext.setAttribute("email", user.getEmail());
                	</form>
                	<br>
                	<hr>
-               	<br>
                	
+               	<div class="row">
+               		<h1>Add and Remove Subjects</h1>
+               	</div>
+               	<br>
                	<div class="row">
                		<form method="post" action="/addSubject">
                			<div class="col-sm-offset-1 col-sm-10 col-sm-offset-1">

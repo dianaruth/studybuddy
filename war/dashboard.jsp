@@ -210,7 +210,8 @@ session.setAttribute("email", user.getEmail());
 									<input class="btn btn-info" type="submit" value="View Next Tutor" />
 								</form>
 	                        </div>
-	                        <%}
+	                        <%
+	                        }
 	                        else{ %>
 	                        <div class="row">
                         		<form id='getTutor' method='get' action='/getTutor'>
