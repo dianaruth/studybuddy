@@ -23,17 +23,22 @@ public class AddSubjectServlet extends HttpServlet {
 		String email = (String) req.getSession().getAttribute("email");
 		String subject = (String) req.getParameter("subject");
 		Person p = null;
+		boolean match = false;
 		for(int i = 0; i < tutors.size(); i += 1) {
 			p = tutors.get(i);
        		if (p.getEmail().equals(email)) {
+       			match = true;
        			break;
        		}
 		}
-		for(int i = 0; i < students.size(); i += 1) {
-			p = students.get(i);
-       		if (p.getEmail().equals(email)) {
-       			break;
-       		}
+		if(!match)
+		{
+			for(int i = 0; i < students.size(); i += 1) {
+				p = students.get(i);
+	       		if (p.getEmail().equals(email)) {
+	       			break;
+	       		}
+			}
 		}
 		p.addSubject(subject);
 		ofy().save().entity(p).now();
