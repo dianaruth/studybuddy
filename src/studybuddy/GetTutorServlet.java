@@ -36,7 +36,7 @@ public class GetTutorServlet extends HttpServlet {
 			int i;
 			for(i = 0; i < tutors.size(); i++)
 			{
-				if(!s.alreadyTried(tutors.get(i).getEmail()) && !s.getSubs().contains(tutors.get(i).getEmail()))
+				if(!s.alreadyTried(tutors.get(i).getEmail()) && !s.getSubs().contains(tutors.get(i).getEmail()) && mutualSubject(tutors.get(i),s))
 				{
 					t = tutors.get(i);
 					s.addTried(t.getEmail());
@@ -71,5 +71,16 @@ public class GetTutorServlet extends HttpServlet {
 		ServletContext sc = getServletContext();
 		RequestDispatcher rd = sc.getRequestDispatcher("/dashboard.jsp");
 		rd.forward(req, resp);
+	}
+	
+	boolean mutualSubject(Tutor tutor, Student student){
+		if(student == null || tutor == null)
+			return false;
+		for(int i = 0; i < student.getSubjects().size(); i ++)
+		{
+			if(tutor.getSubjects().contains(student.getSubjects().get(i)))
+				return true;
+		}
+		return false;
 	}
 }
