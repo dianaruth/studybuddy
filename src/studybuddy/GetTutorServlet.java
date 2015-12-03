@@ -48,7 +48,14 @@ public class GetTutorServlet extends HttpServlet {
 					ArrayList<String> subjects = t.getSubjects();
     				String subjectString = "";
     				for (int k = 0; k < subjects.size(); k++) {
-    					subjectString += subjects.get(k).toUpperCase() + ", ";
+    					String subject = subjects.get(k);
+           				for (int m = 0; m < subject.length(); m++) {
+           					if (Character.isDigit(subject.charAt(m))) {
+           						subject = subject.substring(0, m) + " " + subject.substring(m, subject.length());
+           						break;
+           					}
+           				}
+    					subjectString += subject.toUpperCase() + ", ";
     				}
     				if (!subjectString.equals("")) {
     					req.setAttribute("tutor_subjects", "Subjects: " + subjectString.substring(0, subjectString.length() - 2));
