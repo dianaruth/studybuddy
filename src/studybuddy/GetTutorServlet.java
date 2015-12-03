@@ -24,6 +24,7 @@ public class GetTutorServlet extends HttpServlet {
 		List<Tutor> tutors = ObjectifyService.ofy().load().type(Tutor.class).list();
 		String email = (String) req.getSession().getAttribute("email");
 		Student s = null;
+		boolean match = false;
 		for (int i = 0; i < students.size(); i++) {
 			s = students.get(i);
 			if (s.getEmail().equals(email)) {
@@ -37,26 +38,37 @@ public class GetTutorServlet extends HttpServlet {
 			for(i = 0; i < tutors.size(); i++)
 			{
 				if(!s.alreadyTried(tutors.get(i).getEmail()) && !s.getSubs().contains(tutors.get(i).getEmail()))
-				{
+				{	
 					t = tutors.get(i);
-					s.addTried(t.getEmail());
-					ofy().save().entity(s).now();
-					req.setAttribute("tutor_first_name", t.getFirstName());
-					req.setAttribute("tutor_last_name", t.getLastName());
-					req.setAttribute("tutor_price","$" + t.getPrice() + "/hr");
-					req.setAttribute("tutor_email", t.getEmail());
-					ArrayList<String> subjects = t.getSubjects();
-    				String subjectString = "";
-    				for (int k = 0; k < subjects.size(); k++) {
-    					subjectString += subjects.get(k).toUpperCase() + ", ";
-    				}
-    				if (!subjectString.equals("")) {
-    					req.setAttribute("tutor_subjects", "Subjects: " + subjectString.substring(0, subjectString.length() - 2));
-    				}
-    				else {
-    					req.setAttribute("tutor_subjects", "This tutor has not added any subjects.");
-    				}
-					break;
+					match = false;
+					ArrayList<String> tutorSubjects = t.getSubjects();
+					ArrayList<String> studentSubjects = s.getSubjects();
+					for (String subj : studentSubjects) {
+						if (tutorSubjects.contains(subj)){
+							match = true;
+							break;
+						}
+					}
+					if (match) {
+						s.addTried(t.getEmail());
+						ofy().save().entity(s).now();
+						req.setAttribute("tutor_first_name", t.getFirstName());
+						req.setAttribute("tutor_last_name", t.getLastName());
+						req.setAttribute("tutor_price","$" + t.getPrice() + "/hr");
+						req.setAttribute("tutor_email", t.getEmail());
+						ArrayList<String> subjects = t.getSubjects();
+	    				String subjectString = "";
+	    				for (int k = 0; k < subjects.size(); k++) {
+	    					subjectString += subjects.get(k).toUpperCase() + ", ";
+	    				}
+	    				if (!subjectString.equals("")) {
+	    					req.setAttribute("tutor_subjects", "Subjects: " + subjectString.substring(0, subjectString.length() - 2));
+	    				}
+	    				else {
+	    					req.setAttribute("tutor_subjects", "This tutor has not added any subjects.");
+	    				}
+						break;
+					}
 				}
 			}
 			if(t == null)

@@ -242,7 +242,18 @@ pageContext.setAttribute("email", user.getEmail());
 	               			for (int i = 0; i < subjects.size(); i++) {
 	               			%>
 	               			<tr>
-	               				<td><% out.print(subjects.get(i).toUpperCase()); %></td>
+	               				<td>
+	               				<%
+	               				String subject = subjects.get(i);
+	               				for (int j = 0; j < subject.length(); j++) {
+	               					if (Character.isDigit(subject.charAt(j))) {
+	               						subject = subject.substring(0, j) + " " + subject.substring(j, subject.length());
+	               						break;
+	               					}
+	               				}
+	               				out.print(subject.toUpperCase());
+	               				%>
+	               				</td>
 	               				<td>
 	               					<form method="post" action="/removeSubject">
 	               						<input name="email" class="hidden" value="<% out.print(user.getEmail()); %>">

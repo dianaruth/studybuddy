@@ -25,6 +25,7 @@ public class Person {
 	 */
 	public void addSubject(String subject){
 		subject = subject.toLowerCase();
+		subject = subject.replaceAll("\\s", "");
 		if(!subjects.contains(subject))
 			subjects.add(subject);
 	}
@@ -36,6 +37,7 @@ public class Person {
 	public void removeSubject(String subject)
 	{
 		subject = subject.toLowerCase();
+		subject = subject.replaceAll("\\s", "");
 		if(subjects.contains(subject))
 		{
 			int i = subjects.indexOf(subject);

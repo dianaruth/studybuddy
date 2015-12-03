@@ -202,7 +202,14 @@ session.setAttribute("email", user.getEmail());
                         				ArrayList<String> subjects = s.getSubjects();
                         				String subjectString = "";
                         				for (int j = 0; j < subjects.size(); j++) {
-                        					subjectString += subjects.get(j).toUpperCase() + ", ";
+                        					String subject = subjects.get(j);
+            	               				for (int k = 0; k < subject.length(); k++) {
+            	               					if (Character.isDigit(subject.charAt(k))) {
+            	               						subject = subject.substring(0, k) + " " + subject.substring(k, subject.length());
+            	               						break;
+            	               					}
+            	               				}
+            	               				subjectString += subject.toUpperCase() + ", ";
                         				}
                         				if (!subjectString.equals("")) {
                         					out.print(subjectString.substring(0, subjectString.length() - 2));
@@ -246,7 +253,14 @@ session.setAttribute("email", user.getEmail());
                         				ArrayList<String> subjects = t.getSubjects();
                         				String subjectString = "";
                         				for (int j = 0; j < subjects.size(); j++) {
-                        					subjectString += subjects.get(j).toUpperCase() + ", ";
+                        					String subject = subjects.get(j);
+            	               				for (int k = 0; k < subject.length(); k++) {
+            	               					if (Character.isDigit(subject.charAt(k))) {
+            	               						subject = subject.substring(0, k) + " " + subject.substring(k, subject.length());
+            	               						break;
+            	               					}
+            	               				}
+            	               				subjectString += subject.toUpperCase() + ", ";
                         				}
                         				if (!subjectString.equals("")) {
                         					out.print(subjectString.substring(0, subjectString.length() - 2));
